@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cetinfo - Achat de Tickets en Ligne</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- En-tête avec logo -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="images/logos/logo-cetinfo.png" alt="Logo Cetinfo" class="logo" onclick="retourAccueil()" style="cursor: pointer;">
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="main-container">
+        <section class="hero-section">
+            <h1 class="hero-title">GRAND TIRAGE AU SORT CETINFO 2025!</h1>
+            <p class="hero-subtitle">
+                Chaque année, le CETINFO organise son tirage spécial pour soutenir la jeunesse haïtienne dans son Développement Personnel et Professionnel.
+                Cet événement s'inscrit dans notre engagement social à offrir plus d'opportunités aux jeunes passionnés de Technologie et d'Entrepreneuriat.
+            </p>
+            <button class="buy-ticket-btn" onclick="acheterTicket()">
+                Acheter un Ticket
+            </button>
+        </section>
+
+        <!-- Nouvelle section : Gros lots à gagner -->
+        <section class="prizes-section">
+            <h2 class="section-title">Gros lots à gagner et Prix des tickets</h2>
+            <div class="prizes-grid">
+                <!-- Motocyclette -->
+                <div class="prize-card">
+                    <img src="images/prime/moto.jpg" alt="Motocyclette" class="prize-image" onclick="previewImage('images/prime/moto.jpg', 'Motocyclette')">
+                    <h3 class="prize-name">Motocyclette</h3>
+                    <p class="prize-price">Prix Ticket : 1,500 Gdes</p>
+                    <button class="prize-buy-btn" onclick="acheterTicket('Motocyclette')">
+                        Acheter Ticket
+                    </button>
+                </div>
+                
+                <!-- Laptop -->
+                <div class="prize-card">
+                    <img src="images/prime/laptop.jpg" alt="Laptop" class="prize-image" onclick="previewImage('images/prime/laptop.jpg', 'Laptop')">
+                    <h3 class="prize-name">Laptop</h3>
+                    <p class="prize-price">Prix Ticket : 1,000 Gdes</p>
+                    <button class="prize-buy-btn" onclick="acheterTicket('Laptop')">
+                        Acheter Ticket
+                    </button>
+                </div>
+                
+                <!-- Freezer -->
+                <div class="prize-card">
+                    <img src="images/prime/freezer.jpg" alt="Freezer" class="prize-image" onclick="previewImage('images/prime/freezer.jpg', 'Freezer')">
+                    <h3 class="prize-name">Freezer</h3>
+                    <p class="prize-price">Prix Ticket : 1,000 Gdes</p>
+                    <button class="prize-buy-btn" onclick="acheterTicket('Freezer')">
+                        Acheter Ticket
+                    </button>
+                </div>
+                
+                <!-- Smart TV -->
+                <div class="prize-card">
+                    <img src="images/prime/tv.jpg" alt="Smart TV" class="prize-image" onclick="previewImage('images/prime/tv.jpg', 'Smart TV')">
+                    <h3 class="prize-name">Smart TV</h3>
+                    <p class="prize-price">Prix Ticket : 1,000 Gdes</p>
+                    <button class="prize-buy-btn" onclick="acheterTicket('Smart TV')">
+                        Acheter Ticket
+                    </button>
+                </div>
+                
+                <!-- Caméra -->
+                <div class="prize-card">
+                    <img src="images/prime/camera.jpg" alt="Caméra" class="prize-image" onclick="previewImage('images/prime/camera.jpg', 'Caméra')">
+                    <h3 class="prize-name">Caméra</h3>
+                    <p class="prize-price">Prix Ticket : 750 Gdes</p>
+                    <button class="prize-buy-btn" onclick="acheterTicket('Caméra')">
+                        Acheter Ticket
+                    </button>
+                </div>
+                
+                <!-- Téléphone -->
+                <div class="prize-card">
+                    <img src="images/prime/phone.jpg" alt="Téléphone" class="prize-image" onclick="previewImage('images/prime/phone.jpg', 'Téléphone')">
+                    <h3 class="prize-name">Téléphone</h3>
+                    <p class="prize-price">Prix Ticket : 500 Gdes</p>
+                    <button class="prize-buy-btn" onclick="acheterTicket('Téléphone')">
+                        Acheter Ticket
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section caractéristiques -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Gagnant Garanti</h3>
+                <p class="feature-description">De nombreux lots à gagner à chaque tirage avec des prix attractifs</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Rapide & Simple</h3>
+                <p class="feature-description">Achat de ticket en quelques clics seulement</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Paiement Sécurisé</h3>
+                <p class="feature-description">Transactions cryptées et sécurisées pour votre tranquillité</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <p>&copy; 2025 Cetinfo - Tous droits réservés</p>
+        <p>🌎 info@cetinfo.com | 📞 +(509) 4428 7832</p>
+        <p>🗺 Rue Martin Luther King📍</p>
+    </footer>
+
+    <!-- Modal pour preview d'image -->
+    <div id="imagePreviewModal" class="modal">
+        <span class="close-btn" onclick="closePreview()">&times;</span>
+        <img class="modal-content" id="previewImage">
+        <div id="imageCaption"></div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
