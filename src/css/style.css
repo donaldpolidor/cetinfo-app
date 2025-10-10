@@ -30,19 +30,30 @@ body {
     height: auto;
 }
 
+/* Styles pour le nouveau texte dans le header */
+.logo-container h3 {
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    font-weight: 600;
+    font-style: italic;
+}
+
 .main-container {
     margin-top: 120px;
     padding: 40px 20px;
     text-align: center;
 }
 
+/* SECTION HERO ÉLARGIE */
 .hero-section {
     background: white;
     border-radius: 20px;
-    padding: 60px 40px;
+    padding: 50px 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    max-width: 600px;
+    max-width: 900px; /* Élargi de 600px à 900px */
     margin: 0 auto;
+    width: 95%; /* Prend 95% de la largeur disponible */
 }
 
 .hero-title {
@@ -57,6 +68,25 @@ body {
     color: #666;
     margin-bottom: 40px;
     line-height: 1.6;
+    text-align: justify;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Styles pour le compteur de tickets */
+.ticket-count {
+    font-size: 1.5rem;
+    color: #f11b1b;
+    margin: 20px 0 10px 0;
+    font-weight: bold;
+}
+
+.deadline {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 15px;
+    font-style: italic;
 }
 
 .buy-ticket-btn {
@@ -72,6 +102,8 @@ body {
     box-shadow: 0 5px 15px rgba(238, 90, 36, 0.4);
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .buy-ticket-btn:hover {
@@ -82,6 +114,82 @@ body {
 
 .buy-ticket-btn:active {
     transform: translateY(-1px);
+}
+
+/* Section vidéo */
+.video-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    border: 2px solid #e0e0e0;
+}
+
+.video-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.promo-video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    background: #000;
+}
+
+.video-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.video-control-btn, .download-btn, .share-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.video-control-btn:hover, .download-btn:hover, .share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.download-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.share-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+}
+
+.video-note {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    font-style: italic;
 }
 
 .features {
@@ -122,6 +230,34 @@ body {
 .feature-description {
     color: #666;
     line-height: 1.5;
+}
+
+/* Styles pour les icônes de paiement */
+.icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin: 8px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    background: white;
+    padding: 5px;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Conteneur pour les icônes de paiement */
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
 }
 
 .footer {
@@ -183,6 +319,12 @@ body {
     margin-bottom: 15px;
     background-color: #f8f9fa;
     padding: 10px;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+.prize-image:hover {
+    transform: scale(1.05);
 }
 
 .prize-name {
@@ -221,103 +363,6 @@ body {
     background: linear-gradient(135deg, #667eea, #f11b1b);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(241, 27, 27, 0.4);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-    
-    .buy-ticket-btn {
-        padding: 15px 40px;
-        font-size: 1rem;
-    }
-    
-    .main-container {
-        margin-top: 100px;
-        padding: 20px 15px;
-    }
-    
-    .features {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    /* CORRECTION : 2 colonnes pour les petits écrans */
-    .prizes-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 0 15px;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-    }
-    
-    .prize-card {
-        padding: 20px 15px;
-    }
-    
-    .prize-image {
-        height: 180px;
-        object-fit: contain;
-    }
-    
-    .prize-name {
-        font-size: 1.2rem;
-    }
-    
-    .prize-price {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    /* CORRECTION : 2 colonnes maintenues même sur très petits écrans */
-    .prizes-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 0 10px;
-    }
-    
-    .prize-card {
-        padding: 15px 10px;
-    }
-    
-    .prize-image {
-        height: 150px;
-    }
-    
-    .prize-name {
-        font-size: 1.1rem;
-    }
-    
-    .prize-price {
-        font-size: 1rem;
-    }
-    
-    .prize-buy-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-    
-    .section-title {
-        font-size: 1.6rem;
-    }
-}
-
-/* Pour les très petits écrans (optionnel) */
-@media (max-width: 360px) {
-    .prizes-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
 }
 
 /* Modal pour preview d'image */
@@ -373,16 +418,6 @@ body {
     padding: 0 20px;
 }
 
-/* Curseur pointer pour les images cliquables */
-.prize-image {
-    cursor: zoom-in;
-    transition: transform 0.3s ease;
-}
-
-.prize-image:hover {
-    transform: scale(1.05);
-}
-
 /* Logo cliquable */
 .logo {
     cursor: pointer;
@@ -391,4 +426,174 @@ body {
 
 .logo:hover {
     transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        text-align: left;
+    }
+    
+    .buy-ticket-btn {
+        padding: 15px 40px;
+        font-size: 1rem;
+    }
+    
+    .main-container {
+        margin-top: 100px;
+        padding: 20px 15px;
+    }
+    
+    .hero-section {
+        max-width: 95%;
+        padding: 30px 25px;
+    }
+    
+    .features {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Vidéo responsive */
+    .video-section {
+        padding: 20px;
+        margin-top: 30px;
+    }
+    
+    .video-title {
+        font-size: 1.3rem;
+    }
+    
+    .video-controls {
+        gap: 8px;
+    }
+    
+    .video-control-btn, .download-btn, .share-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    /* CORRECTION : 2 colonnes pour les petits écrans */
+    .prizes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 15px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .prize-card {
+        padding: 20px 15px;
+    }
+    
+    .prize-image {
+        height: 180px;
+        object-fit: contain;
+    }
+    
+    .prize-name {
+        font-size: 1.2rem;
+    }
+    
+    .prize-price {
+        font-size: 1.1rem;
+    }
+    
+    /* Icônes responsive */
+    .icon {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+    }
+    
+    .payment-icons {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* CORRECTION : 2 colonnes maintenues même sur très petits écrans */
+    .prizes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .prize-card {
+        padding: 15px 10px;
+    }
+    
+    .prize-image {
+        height: 150px;
+    }
+    
+    .prize-name {
+        font-size: 1.1rem;
+    }
+    
+    .prize-price {
+        font-size: 1rem;
+    }
+    
+    .prize-buy-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    /* Vidéo mobile */
+    .video-section {
+        padding: 15px;
+    }
+    
+    .video-title {
+        font-size: 1.2rem;
+    }
+    
+    .video-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .video-control-btn, .download-btn, .share-btn {
+        width: 180px;
+        justify-content: center;
+    }
+    
+    .promo-video {
+        border-radius: 8px;
+    }
+    
+    /* Icônes mobile */
+    .icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .hero-section {
+        padding: 25px 20px;
+    }
+}
+
+/* Pour les très petits écrans (optionnel) */
+@media (max-width: 360px) {
+    .prizes-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .hero-section {
+        padding: 20px 15px;
+    }
 }

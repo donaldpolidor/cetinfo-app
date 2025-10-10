@@ -11,6 +11,7 @@
     <header class="header">
         <div class="logo-container">
             <img src="images/logos/logo-cetinfo.png" alt="Logo Cetinfo" class="logo" onclick="retourAccueil()" style="cursor: pointer;">
+            <h3>Tout est une affaire de technologie !</h3>       
         </div>
     </header>
 
@@ -22,9 +23,37 @@
                 Chaque année, le CETINFO organise son tirage spécial pour soutenir la jeunesse haïtienne dans son Développement Personnel et Professionnel.
                 Cet événement s'inscrit dans notre engagement social à offrir plus d'opportunités aux jeunes passionnés de Technologie et d'Entrepreneuriat.
             </p>
+            <h1 class="ticket-count">Tickets restants : 40</h1>
             <button class="buy-ticket-btn" onclick="acheterTicket()">
                 Acheter un Ticket
             </button>
+            <h2 class="deadline">Date limite: 23 novembre 2025</h2>
+            
+            <!-- Section vidéo de publicité -->
+            <div class="video-section">
+                <h3 class="video-title">Découvrez notre vidéo de promotion</h3>
+                <div class="video-container">
+    <video controls autoplay loop class="promo-video">
+        <source src="video/videopub.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture de vidéos.
+    </video>
+</div>
+                <div class="video-controls">
+                    <button class="video-control-btn" onclick="togglePlayPause()" id="playPauseBtn">
+                        ⏸️ Pause
+                    </button>
+                    <button class="video-control-btn" onclick="toggleMute()" id="muteBtn">
+                        🔇 Son
+                    </button>
+                    <button class="download-btn" onclick="telechargerVideo()">
+                        📥 Télécharger
+                    </button>
+                    <button class="share-btn" onclick="partagerVideo()">
+                        🔗 Partager
+                    </button>
+                </div>
+                <p class="video-note">La vidéo se lit automatiquement. Utilisez les contrôles pour la mettre en pause ou ajuster le son.</p>
+            </div>
         </section>
 
         <!-- Nouvelle section : Gros lots à gagner -->
@@ -98,7 +127,7 @@
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
                 <h3 class="feature-title">Gagnant Garanti</h3>
-                <p class="feature-description">De nombreux lots à gagner à chaque tirage avec des prix attractifs</p>
+                <p class="feature-description">De nombreux lots à gagner à chaque tirage et beaucoup de primes de consolation !</p>
             </div>
             
             <div class="feature-card">
@@ -110,7 +139,11 @@
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
                 <h3 class="feature-title">Paiement Sécurisé</h3>
-                <p class="feature-description">Transactions cryptées et sécurisées pour votre tranquillité</p>
+                <p class="feature-description">Effectuez vos transactions via Mon Cash ou NatCash en toute sécurité</p>
+                <div class="payment-icons">
+                    <img src="images/moncash.jpg" alt="Mon Cash" class="icon" title="Mon Cash">
+                    <img src="images/natcash.jpg" alt="NatCash" class="icon" title="NatCash">
+                </div>
             </div>
         </section>
     </main>
@@ -118,8 +151,8 @@
     <!-- Pied de page -->
     <footer class="footer">
         <p>&copy; 2025 Cetinfo - Tous droits réservés</p>
-        <p>🌎 info@cetinfo.com | 📞 +(509) 4428 7832</p>
-        <p>🗺 Rue Martin Luther King📍</p>
+        <p>🌎 info@cetinfo.com | 📞 +(509) 3724-5036 / 3801-7951</p>
+        <p>🗺 130, Ave. Martin Luther King (Pont Morin)📍</p>
     </footer>
 
     <!-- Modal pour preview d'image -->
