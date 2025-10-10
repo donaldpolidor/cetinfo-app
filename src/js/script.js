@@ -52,6 +52,9 @@ let video = null;
 function initialiserVideo() {
     video = document.getElementById('promoVideo');
     if (video) {
+        // Empêcher la lecture automatique problématique
+        video.removeAttribute('autoplay');
+        
         video.addEventListener('play', function() {
             document.getElementById('playPauseBtn').innerHTML = '⏸️ Pause';
         });
@@ -63,13 +66,22 @@ function initialiserVideo() {
         video.addEventListener('volumechange', function() {
             document.getElementById('muteBtn').innerHTML = video.muted ? '🔇 Son' : '🔊 Muet';
         });
+
+        // Gestion propre des erreurs de lecture
+        video.addEventListener('error', function(e) {
+            console.error('Erreur vidéo:', e);
+        });
     }
 }
 
 function togglePlayPause() {
     if (video) {
         if (video.paused) {
-            video.play();
+            // Lecture avec gestion d'erreur
+            video.play().catch(error => {
+                console.log('Erreur de lecture:', error);
+                alert('Impossible de lire la vidéo. Vérifiez votre connexion ou le format de la vidéo.');
+            });
         } else {
             video.pause();
         }
@@ -109,7 +121,11 @@ function partagerVideo() {
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Application Cetinfo chargée');
-    initialiserVideo();
+    
+    // Initialiser la vidéo après le chargement complet
+    setTimeout(() => {
+        initialiserVideo();
+    }, 1000);
     
     const buyButton = document.querySelector('.buy-ticket-btn');
     if (buyButton) {
