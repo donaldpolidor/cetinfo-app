@@ -70,5 +70,13 @@ if (fs.existsSync('./src/images')) {
     }
 }
 
+// AJOUTEZ CETTE SECTION POUR COPIER LA VIDÉO
+if (fs.existsSync('./src/video')) {
+    copyDir('./src/video', './dist/video');
+    console.log('✅ Dossier video copié avec succès');
+} else {
+    console.log('❌ Dossier video non trouvé dans src/');
+}
+
 console.log('🎉 Build terminé avec succès !');
 console.log('📂 Les fichiers sont dans le dossier dist/');
