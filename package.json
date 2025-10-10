@@ -1,20 +1,12 @@
 {
   "name": "cetinfo-app",
   "version": "1.0.0",
-  "description": "Application d'achat de tickets en ligne pour Cetinfo",
-  "main": "src/index.html",
   "scripts": {
     "dev": "live-server src --port=3000",
     "build": "node build.js",
-    "lint": "echo 'Linting...' && npx htmlhint src/**/*.html",
-    "start": "live-server src --port=3000",
-    "serve": "live-server dist --port=3000"
+    "start": "live-server src --port=3000"
   },
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "htmlhint": "^1.1.4"
-  },
-  "keywords": ["cetinfo", "tickets", "tirage"],
-  "author": "Votre Nom",
-  "license": "MIT"
+    "live-server": "^1.2.2"
+  }
 }
