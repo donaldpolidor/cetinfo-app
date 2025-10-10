@@ -30,7 +30,6 @@ body {
     height: auto;
 }
 
-/* Styles pour le nouveau texte dans le header */
 .logo-container h3 {
     color: #667eea;
     font-size: 1.1rem;
@@ -45,15 +44,14 @@ body {
     text-align: center;
 }
 
-/* SECTION HERO ÉLARGIE */
 .hero-section {
     background: white;
     border-radius: 20px;
     padding: 50px 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    max-width: 900px; /* Élargi de 600px à 900px */
+    max-width: 900px;
     margin: 0 auto;
-    width: 95%; /* Prend 95% de la largeur disponible */
+    width: 95%;
 }
 
 .hero-title {
@@ -74,7 +72,6 @@ body {
     margin-right: auto;
 }
 
-/* Styles pour le compteur de tickets */
 .ticket-count {
     font-size: 1.5rem;
     color: #f11b1b;
@@ -116,7 +113,6 @@ body {
     transform: translateY(-1px);
 }
 
-/* Section vidéo */
 .video-section {
     margin-top: 40px;
     padding: 30px;
@@ -232,7 +228,6 @@ body {
     line-height: 1.5;
 }
 
-/* Styles pour les icônes de paiement */
 .icon {
     width: 60px;
     height: 60px;
@@ -250,7 +245,6 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* Conteneur pour les icônes de paiement */
 .payment-icons {
     display: flex;
     justify-content: center;
@@ -269,7 +263,6 @@ body {
     backdrop-filter: blur(10px);
 }
 
-/* Section des prix */
 .prizes-section {
     margin: 60px 0;
     text-align: center;
@@ -365,7 +358,6 @@ body {
     box-shadow: 0 5px 15px rgba(241, 27, 27, 0.4);
 }
 
-/* Modal pour preview d'image */
 .modal {
     display: none;
     position: fixed;
@@ -418,7 +410,6 @@ body {
     padding: 0 20px;
 }
 
-/* Logo cliquable */
 .logo {
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -428,7 +419,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2rem;
@@ -459,7 +449,6 @@ body {
         gap: 20px;
     }
     
-    /* Vidéo responsive */
     .video-section {
         padding: 20px;
         margin-top: 30px;
@@ -478,7 +467,6 @@ body {
         font-size: 0.8rem;
     }
     
-    /* CORRECTION : 2 colonnes pour les petits écrans */
     .prizes-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -507,7 +495,6 @@ body {
         font-size: 1.1rem;
     }
     
-    /* Icônes responsive */
     .icon {
         width: 50px;
         height: 50px;
@@ -520,7 +507,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    /* CORRECTION : 2 colonnes maintenues même sur très petits écrans */
     .prizes-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -552,7 +538,6 @@ body {
         font-size: 1.6rem;
     }
     
-    /* Vidéo mobile */
     .video-section {
         padding: 15px;
     }
@@ -575,7 +560,6 @@ body {
         border-radius: 8px;
     }
     
-    /* Icônes mobile */
     .icon {
         width: 45px;
         height: 45px;
@@ -586,7 +570,6 @@ body {
     }
 }
 
-/* Pour les très petits écrans (optionnel) */
 @media (max-width: 360px) {
     .prizes-grid {
         grid-template-columns: 1fr;

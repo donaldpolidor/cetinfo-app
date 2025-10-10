@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- En-tête avec logo -->
     <header class="header">
         <div class="logo-container">
             <img src="images/logos/logo-cetinfo.png" alt="Logo Cetinfo" class="logo" onclick="retourAccueil()" style="cursor: pointer;">
@@ -15,7 +14,6 @@
         </div>
     </header>
 
-    <!-- Contenu principal -->
     <main class="main-container">
         <section class="hero-section">
             <h1 class="hero-title">GRAND TIRAGE AU SORT CETINFO 2025!</h1>
@@ -29,21 +27,20 @@
             </button>
             <h2 class="deadline">Date limite: 23 novembre 2025</h2>
             
-            <!-- Section vidéo de publicité -->
             <div class="video-section">
                 <h3 class="video-title">Découvrez notre vidéo de promotion</h3>
                 <div class="video-container">
-    <video controls autoplay loop class="promo-video">
-        <source src="video/videopub.mp4" type="video/mp4">
-        Votre navigateur ne supporte pas la lecture de vidéos.
-    </video>
-</div>
+                    <video controls class="promo-video" id="promoVideo">
+                        <source src="video/videopub.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                </div>
                 <div class="video-controls">
                     <button class="video-control-btn" onclick="togglePlayPause()" id="playPauseBtn">
-                        ⏸️ Pause
+                        ▶️ Lecture
                     </button>
                     <button class="video-control-btn" onclick="toggleMute()" id="muteBtn">
-                        🔇 Son
+                        🔊 Muet
                     </button>
                     <button class="download-btn" onclick="telechargerVideo()">
                         📥 Télécharger
@@ -52,15 +49,13 @@
                         🔗 Partager
                     </button>
                 </div>
-                <p class="video-note">La vidéo se lit automatiquement. Utilisez les contrôles pour la mettre en pause ou ajuster le son.</p>
+                <p class="video-note">Cliquez sur Lecture pour démarrer la vidéo</p>
             </div>
         </section>
 
-        <!-- Nouvelle section : Gros lots à gagner -->
         <section class="prizes-section">
             <h2 class="section-title">Gros lots à gagner et Prix des tickets</h2>
             <div class="prizes-grid">
-                <!-- Motocyclette -->
                 <div class="prize-card">
                     <img src="images/prime/moto.jpg" alt="Motocyclette" class="prize-image" onclick="previewImage('images/prime/moto.jpg', 'Motocyclette')">
                     <h3 class="prize-name">Motocyclette</h3>
@@ -70,7 +65,6 @@
                     </button>
                 </div>
                 
-                <!-- Laptop -->
                 <div class="prize-card">
                     <img src="images/prime/laptop.jpg" alt="Laptop" class="prize-image" onclick="previewImage('images/prime/laptop.jpg', 'Laptop')">
                     <h3 class="prize-name">Laptop</h3>
@@ -80,7 +74,6 @@
                     </button>
                 </div>
                 
-                <!-- Freezer -->
                 <div class="prize-card">
                     <img src="images/prime/freezer.jpg" alt="Freezer" class="prize-image" onclick="previewImage('images/prime/freezer.jpg', 'Freezer')">
                     <h3 class="prize-name">Freezer</h3>
@@ -90,7 +83,6 @@
                     </button>
                 </div>
                 
-                <!-- Smart TV -->
                 <div class="prize-card">
                     <img src="images/prime/tv.jpg" alt="Smart TV" class="prize-image" onclick="previewImage('images/prime/tv.jpg', 'Smart TV')">
                     <h3 class="prize-name">Smart TV</h3>
@@ -100,7 +92,6 @@
                     </button>
                 </div>
                 
-                <!-- Caméra -->
                 <div class="prize-card">
                     <img src="images/prime/camera.jpg" alt="Caméra" class="prize-image" onclick="previewImage('images/prime/camera.jpg', 'Caméra')">
                     <h3 class="prize-name">Caméra</h3>
@@ -110,7 +101,6 @@
                     </button>
                 </div>
                 
-                <!-- Téléphone -->
                 <div class="prize-card">
                     <img src="images/prime/phone.jpg" alt="Téléphone" class="prize-image" onclick="previewImage('images/prime/phone.jpg', 'Téléphone')">
                     <h3 class="prize-name">Téléphone</h3>
@@ -122,7 +112,6 @@
             </div>
         </section>
 
-        <!-- Section caractéristiques -->
         <section class="features">
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
@@ -148,14 +137,12 @@
         </section>
     </main>
 
-    <!-- Pied de page -->
     <footer class="footer">
         <p>&copy; 2025 Cetinfo - Tous droits réservés</p>
         <p>🌎 info@cetinfo.com | 📞 +(509) 3724-5036 / 3801-7951</p>
         <p>🗺 130, Ave. Martin Luther King (Pont Morin)📍</p>
     </footer>
 
-    <!-- Modal pour preview d'image -->
     <div id="imagePreviewModal" class="modal">
         <span class="close-btn" onclick="closePreview()">&times;</span>
         <img class="modal-content" id="previewImage">
