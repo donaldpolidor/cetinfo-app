@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Achat de Ticket - Cetinfo</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <img src="images/logos/logo-cetinfo.png" alt="Logo Cetinfo" class="logo" onclick="window.location.href = 'index.html'">
+            <h3>Tout est une affaire de technologie !</h3>       
+        </div>
+    </header>
+
+    <main class="main-container achat-container">
+        <h1 class="achat-title">Achat de Ticket</h1>
+
+        <form id="formAchat" class="achat-form">
+            <div class="form-group">
+                <label for="prime">Choisissez une prime :</label>
+                <select name="prime" id="prime" required class="form-input">
+                    <option value="" disabled selected>-- Sélectionnez une prime --</option>
+                    <option value="Motocyclette - 1,500 Gdes">Motocyclette - 1,500 Gdes</option>
+                    <option value="Laptop - 1,000 Gdes">Laptop - 1,000 Gdes</option>
+                    <option value="Freezer - 1,000 Gdes">Freezer - 1,000 Gdes</option>
+                    <option value="Smart TV - 1,000 Gdes">Smart TV - 1,000 Gdes</option>
+                    <option value="Caméra - 750 Gdes">Caméra - 750 Gdes</option>
+                    <option value="Téléphone - 500 Gdes">Téléphone - 500 Gdes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required class="form-input" placeholder="Votre nom" />
+            </div>
+
+            <div class="form-group">
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" required class="form-input" placeholder="Votre prénom" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required class="form-input" placeholder="votre@email.com" />
+            </div>
+
+            <div class="form-group">
+                <label for="telephone">Téléphone :</label>
+                <input type="tel" id="telephone" name="telephone" pattern="[0-9+\-\s]{8,15}" required class="form-input" placeholder="Ex: 509 1234-5678" />
+                <small class="form-hint">Format: chiffres, +, - et espaces (8-15 caractères)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="adresse">Adresse :</label>
+                <input type="text" id="adresse" name="adresse" required class="form-input" placeholder="Votre adresse complète" />
+            </div>
+
+            <div class="form-group">
+                <label for="idTransaction">ID Transaction :</label>
+                <input type="text" id="idTransaction" name="idTransaction" required class="form-input" placeholder="Numéro de transaction Mon Cash/NatCash" />
+                <small class="form-hint">Le numéro de confirmation de votre paiement</small>
+            </div>
+
+            <div class="payment-info">
+                <h4>📋 Instructions de paiement</h4>
+                <p>1. Effectuez le paiement via <strong>Mon Cash</strong> ou <strong>NatCash</strong></p>
+                <p>2. Sauvegardez le <strong>numéro de transaction</strong></p>
+                <p>3. Remplissez ce formulaire avec vos informations</p>
+            </div>
+
+            <button type="submit" class="buy-ticket-btn achat-submit-btn">
+                <span id="submitText">Acheter le Ticket</span>
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <span>⏳</span> Envoi en cours...
+                </div>
+            </button>
+
+            <div id="formMessage" class="form-message"></div>
+        </form>
+
+        <div class="contact-section">
+            <h3>📞 Besoin d'aide ?</h3>
+            <p>Contactez-nous directement :</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>📧 Email:</strong><br>
+                    info@cetinfo.com
+                </div>
+                <div class="contact-item">
+                    <strong>📱 Téléphone:</strong><br>
+                    +(509) 3724-5036<br>
+                    +(509) 3801-7951
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Cetinfo - Tous droits réservés</p>
+        <p>🌎 info@cetinfo.com | 📞 +(509) 3724-5036 / 3801-7951</p>
+        <p>🗺 130, Ave. Martin Luther King (Pont Morin)📍</p>
+    </footer>
+
+    <!-- Charger EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="js/achat.js"></script>
+</body>
+</html>
