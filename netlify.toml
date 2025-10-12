@@ -1,18 +1,11 @@
 [build]
-  publish = "src"
-  command = "echo 'No build command'"
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
 
 [[redirects]]
   from = "/*"
-  to = "/src/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/achat"
-  to = "/src/achat.html"
-  status = 200
-
-[[redirects]]
-  from = "/success"
-  to = "/src/success.html"
+  to = "/index.html"
   status = 200
