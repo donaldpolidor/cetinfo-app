@@ -70,30 +70,61 @@ NOUVEL ACHAT DE TICKET(S) CETINFO 2025
 Cet email a été envoyé automatiquement depuis le formulaire d'achat Cetinfo.
     `.trim();
     
-    // Méthode 1: mailto standard (fonctionne partout)
+    // Méthode 1: mailto standard
     const mailtoLink = `mailto:donaldpolidor30@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // Méthode 2: Lien Gmail direct (pour les utilisateurs Gmail)
+    // Méthode 2: Lien Gmail direct
     const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=donaldpolidor30@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // Détection du dispositif et choix de la méthode
+    // Détection du dispositif
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         // Mobile - utiliser mailto standard
         window.location.href = mailtoLink;
     } else {
-        // Desktop - proposer les deux options
-        const utiliserGmail = confirm(
-            `Voulez-vous ouvrir Gmail pour envoyer l'email ?\n\n` +
-            `• Cliquez sur "OK" pour ouvrir Gmail\n` +
-            `• Cliquez sur "Annuler" pour utiliser votre client email par défaut`
-        );
+        // Desktop - Ouvrir Gmail directement dans un nouvel onglet
+        // Sans confirmation pour éviter les blocages
+        const nouvelleFenetre = window.open(gmailLink, '_blank');
         
-        if (utiliserGmail) {
-            // Ouvrir Gmail dans un nouvel onglet
-            window.open(gmailLink, '_blank');
+        // Si l'ouverture est bloquée, donner les instructions manuelles
+        if (!nouvelleFenetre || nouvelleFenetre.closed || typeof nouvelleFenetre.closed == 'undefined') {
+            // Popup bloquée - donner les instructions manuelles
+            const instructionsManuelles = `
+📧 EMAIL BLOQUÉ - INSTRUCTIONS MANUELLES :
+
+Voici le contenu de votre email. Copiez-collez le dans Gmail :
+
+DESTINATAIRE: donaldpolidor30@gmail.com
+SUJET: ${subject}
+
+CORPS DU MESSAGE:
+${body}
+
+ÉTAPES:
+1. Allez sur Gmail (gmail.com)
+2. Cliquez sur "Composer"
+3. Copiez les informations ci-dessus
+4. Envoyez l'email
+
+Cliquez sur OK pour copier le contenu automatiquement.
+            `;
+            
+            if (confirm(instructionsManuelles)) {
+                // Copier le contenu dans le presse-papier
+                const textArea = document.createElement('textarea');
+                textArea.value = `Destinataire: donaldpolidor30@gmail.com\nSujet: ${subject}\n\n${body}`;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                alert('✅ Contenu copié ! Allez sur Gmail et collez-le dans un nouvel email.');
+                
+                // Ouvrir Gmail dans le même onglet
+                window.location.href = 'https://mail.google.com/mail/u/0/#inbox?compose=new';
+            }
         } else {
-            // Utiliser le client email par défaut
-            window.location.href = mailtoLink;
+            // Popup ouverte avec succès
+            console.log('Gmail ouvert dans un nouvel onglet');
         }
     }
 }
@@ -102,12 +133,13 @@ function afficherInstructionsEmail() {
     const instructions = `
 📧 INSTRUCTIONS POUR ENVOYER L'EMAIL :
 
-1. Votre client email va s'ouvrir avec un email pré-rempli
+1. Une fenêtre Gmail va s'ouvrir avec votre email pré-rempli
 2. VÉRIFIEZ que toutes vos informations sont correctes
 3. CLIQUEZ sur "Envoyer" pour finaliser votre achat
-4. Attendez la confirmation de notre part
+4. Revenez sur cette page après envoi
 
-⚠️ IMPORTANT : Votre achat n'est validé que lorsque vous avez envoyé l'email et reçu une confirmation !
+⚠️ IMPORTANT : Si une fenêtre popup s'ouvre, autorisez-la.
+Votre achat n'est validé que lorsque l'email est envoyé !
     `;
     
     return confirm(instructions + "\n\nCliquez sur OK pour continuer");
@@ -173,8 +205,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Message de confirmation final
         alert(`🎉 Formulaire préparé avec succès!\n\n` +
-              `Un email a été préparé avec vos informations.\n` +
-              `VÉRIFIEZ et ENVOYEZ l'email pour finaliser votre achat.\n\n` +
+              `Vérifiez que Gmail s'est ouvert avec votre email pré-rempli.\n` +
+              `Si ce n'est pas le cas, suivez les instructions affichées.\n\n` +
               `Vous serez redirigé vers la page d'accueil dans 5 secondes.`);
         
         // Rediriger après 5 secondes
