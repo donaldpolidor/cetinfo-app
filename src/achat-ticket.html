@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat de Ticket - Cetinfo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <img src="images/logos/logo-cetinfo.png" alt="Logo Cetinfo" class="logo" onclick="retourAccueil()" style="cursor: pointer;">
+            <h3>Tout est une affaire de technologie !</h3>       
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="form-container">
+            <h1>Formulaire d'Achat de Ticket</h1>
+            
+            <div class="payment-info">
+                <h3>📋 Instructions de Paiement</h3>
+                <ol>
+                    <li>Sélectionnez le(s) ticket(s) que vous souhaitez acheter</li>
+                    <li>Effectuez le paiement via <strong>Mon Cash</strong> ou <strong>NatCash + Frais Depot</strong></li>
+                    <li>Conservez le <strong>ID Transaction</strong> reçu après paiement</li>
+                    <li>Remplissez ce formulaire avec vos informations personnelles</li>
+                    <li>Insérez le <strong>ID Transaction</strong> dans le champ prévu à cet effet</li>
+                    <li>Soumettez le formulaire pour valider votre achat</li>
+                </ol>
+                <p class="payment-numbers">
+                    💰 Numéros de paiement :<br>
+                    <strong>Mon Cash: 3724-5036 | NatCash: 3801-7951</strong>
+                </p>
+            </div>
+
+            <form id="achatForm">
+                <div class="form-group">
+                    <label style="display: block; margin-bottom: 12px; font-size: 1rem; font-weight: bold;">Sélectionnez vos tickets *</label>
+                    
+                    <div class="tickets-container">
+                        <div class="tickets-checkbox-group">
+                            <div class="ticket-option">
+                                <input type="checkbox" id="ticket-moto" name="tickets" value="Motocyclette-1500" class="ticket-checkbox">
+                                <label for="ticket-moto" class="ticket-label">
+                                    <span class="ticket-name">Motocyclette</span>
+                                    <span class="ticket-price">1,500 Gdes</span>
+                                </label>
+                            </div>
+                            
+                            <div class="ticket-option">
+                                <input type="checkbox" id="ticket-laptop" name="tickets" value="Laptop-1000" class="ticket-checkbox">
+                                <label for="ticket-laptop" class="ticket-label">
+                                    <span class="ticket-name">Laptop</span>
+                                    <span class="ticket-price">1,000 Gdes</span>
+                                </label>
+                            </div>
+                            
+                            <div class="ticket-option">
+                                <input type="checkbox" id="ticket-freezer" name="tickets" value="Freezer-1000" class="ticket-checkbox">
+                                <label for="ticket-freezer" class="ticket-label">
+                                    <span class="ticket-name">Freezer</span>
+                                    <span class="ticket-price">1,000 Gdes</span>
+                                </label>
+                            </div>
+                            
+                            <div class="ticket-option">
+                                <input type="checkbox" id="ticket-tv" name="tickets" value="Smart TV-1000" class="ticket-checkbox">
+                                <label for="ticket-tv" class="ticket-label">
+                                    <span class="ticket-name">Smart TV</span>
+                                    <span class="ticket-price">1,000 Gdes</span>
+                                </label>
+                            </div>
+                            
+                            <div class="ticket-option">
+                                <input type="checkbox" id="ticket-camera" name="tickets" value="Caméra-750" class="ticket-checkbox">
+                                <label for="ticket-camera" class="ticket-label">
+                                    <span class="ticket-name">Caméra</span>
+                                    <span class="ticket-price">750 Gdes</span>
+                                </label>
+                            </div>
+                            
+                            <div class="ticket-option">
+                                <input type="checkbox" id="ticket-phone" name="tickets" value="Téléphone-500" class="ticket-checkbox">
+                                <label for="ticket-phone" class="ticket-label">
+                                    <span class="ticket-name">Téléphone</span>
+                                    <span class="ticket-price">500 Gdes</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 8px;">
+                        Cochez les tickets que vous souhaitez acheter
+                    </small>
+                </div>
+
+                <div class="selected-tickets" id="selectedTickets" style="display: none;">
+                    <h4 style="color: #333; margin-bottom: 12px; font-size: 1rem;">🎫 Tickets sélectionnés :</h4>
+                    <div id="ticketsList"></div>
+                    <div id="totalAmount" style="font-weight: bold; color: #f11b1b; margin-top: 12px; font-size: 1.1rem;"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nom">Nom *</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="prenom">Prénom *</label>
+                    <input type="text" id="prenom" name="prenom" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="adresse">Adresse *</label>
+                    <input type="text" id="adresse" name="adresse" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telephone">Téléphone *</label>
+                    <input type="tel" id="telephone" name="telephone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="transactionId">ID Transaction *</label>
+                    <input type="text" id="transactionId" name="transactionId" required 
+                           placeholder="Ex: MC123456789 ou NT987654321">
+                </div>
+                
+                <button type="submit" class="submit-btn">Soumettre l'Achat</button>
+            </form>
+            
+            <button class="back-btn" onclick="retourAccueil()">← Retour à l'Accueil</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Cetinfo - Tous droits réservés</p>
+        <p>🌎 info@cetinfo.com | 📞 +(509) 3724-5036 / 3801-7951</p>
+        <p>🗺 130, Ave. Martin Luther King (Pont Morin)📍</p>
+    </footer>
+
+    <script src="js/achat-script.js"></script>
+</body>
+</html>

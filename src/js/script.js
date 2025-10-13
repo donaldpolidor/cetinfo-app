@@ -1,11 +1,6 @@
 function acheterTicket(prize = '') {
-    if (prize) {
-        alert(`Achat de ticket pour: ${prize}\n\nFonctionnalité d'achat de ticket bientôt disponible !`);
-        console.log(`Ticket acheté pour: ${prize}`);
-    } else {
-        alert('Fonctionnalité d\'achat de ticket bientôt disponible !');
-        console.log('Achat de ticket pour le tirage général');
-    }
+    // Rediriger vers la page de formulaire d'achat
+    window.location.href = 'achat-ticket.html';
 }
 
 function retourAccueil() {

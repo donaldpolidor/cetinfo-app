@@ -580,3 +580,341 @@ body {
         padding: 20px 15px;
     }
 }
+
+/* style pour la page achat*/
+.form-container {
+    max-width: 600px;
+    margin: 120px auto 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.form-container h1 {
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.payment-info {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.payment-info h3 {
+    color: #856404;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.payment-info ol {
+    text-align: left;
+    margin-left: 20px;
+    color: #856404;
+}
+
+.payment-info li {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.payment-numbers {
+    color: #856404;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-container {
+        margin: 100px 15px 40px;
+        padding: 20px;
+    }
+    
+    .form-container h1 {
+        font-size: 1.6rem;
+    }
+    
+    .payment-info {
+        padding: 15px;
+    }
+    
+    .payment-info ol {
+        margin-left: 15px;
+    }
+    
+    .payment-numbers {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        margin: 90px 10px 30px;
+        padding: 15px;
+    }
+    
+    .form-container h1 {
+        font-size: 1.4rem;
+    }
+    
+    .submit-btn, .back-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Styles pour les checkboxes de tickets - Version compacte */
+.tickets-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    background: white;
+}
+
+.tickets-checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.ticket-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: white;
+    min-height: 40px;
+}
+
+.ticket-option:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.ticket-option:has(.ticket-checkbox:checked) {
+    border-color: #4CAF50;
+    background: #f0fff4;
+}
+
+.ticket-checkbox {
+    margin-right: 10px;
+    transform: scale(1.1);
+    accent-color: #4CAF50;
+}
+
+.ticket-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    gap: 8px;
+}
+
+.ticket-name {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.85rem;
+}
+
+.ticket-price {
+    font-weight: bold;
+    color: #f11b1b;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* Scrollbar personnalisée */
+.tickets-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tickets-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.tickets-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.tickets-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Styles pour l'affichage des tickets sélectionnés */
+.selected-tickets {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #dee2e6;
+    margin-bottom: 20px;
+}
+
+.selected-tickets h4 {
+    color: #333;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.selected-ticket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    margin: 6px 0;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    font-size: 0.9rem;
+}
+
+.selected-ticket-item .ticket-name {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.selected-ticket-item .ticket-price {
+    color: #f11b1b;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+#totalAmount {
+    text-align: center;
+    padding-top: 12px;
+    border-top: 2px solid #dee2e6;
+    margin-top: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tickets-checkbox-group {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+    
+    .ticket-option {
+        padding: 6px 8px;
+        min-height: 35px;
+    }
+    
+    .ticket-label {
+        font-size: 0.8rem;
+    }
+    
+    .tickets-container {
+        max-height: 180px;
+    }
+    
+    .selected-ticket-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tickets-container {
+        max-height: 160px;
+    }
+    
+    .ticket-option {
+        padding: 5px 8px;
+        min-height: 32px;
+    }
+    
+    .ticket-label {
+        font-size: 0.75rem;
+    }
+    
+    .selected-tickets {
+        padding: 12px;
+    }
+}
