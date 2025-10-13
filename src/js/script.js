@@ -114,8 +114,71 @@ function partagerVideo() {
     }
 }
 
+// COMPTEUR DE TICKETS - Calcul depuis le 11 octobre 2025 avec cycle
+function gererCompteurTickets() {
+    const ticketCountElement = document.querySelector('.ticket-count');
+    if (!ticketCountElement) return;
+    
+    const aujourdHui = new Date();
+    const dateDebut = new Date('2025-10-11'); // 11 octobre 2025
+    const dateLimite = new Date('2025-11-23'); // 23 novembre 2025
+    
+    // Vérifier si nous sommes avant le début
+    if (aujourdHui < dateDebut) {
+        ticketCountElement.textContent = 'Tickets restants : 100';
+        ticketCountElement.style.color = '#f11b1b';
+        return;
+    }
+    
+    // Vérifier si nous sommes après la date limite
+    if (aujourdHui > dateLimite) {
+        ticketCountElement.textContent = 'Tirage terminé !';
+        ticketCountElement.style.color = '#ff0000';
+        return;
+    }
+    
+    // Calculer les jours écoulés depuis le 11 octobre 2025
+    const differenceTemps = aujourdHui - dateDebut;
+    const joursEcoules = Math.floor(differenceTemps / (1000 * 60 * 60 * 24));
+    
+    // Calculer les tickets restants (diminue de 5 par jour)
+    let ticketsRestants = 100 - (joursEcoules * 5);
+    
+    // Gérer le cycle - recommencer à 100 quand on arrive à 0 ou en dessous
+    if (ticketsRestants <= 0) {
+        // Calculer combien de cycles complets se sont passés
+        const cycles = Math.floor(Math.abs(ticketsRestants) / 100) + 1;
+        ticketsRestants = 100 - (Math.abs(ticketsRestants) % 100);
+        
+        // Si ticketsRestants est 0 après calcul, remettre à 100
+        if (ticketsRestants === 0) {
+            ticketsRestants = 100;
+        }
+    }
+    
+    // Assurer que c'est entre 1 et 100
+    ticketsRestants = Math.max(1, Math.min(100, ticketsRestants));
+    
+    // Changer la couleur selon le nombre de tickets
+    if (ticketsRestants <= 10) {
+        ticketCountElement.style.color = '#ff0000'; // Rouge vif
+    } else if (ticketsRestants <= 30) {
+        ticketCountElement.style.color = '#ff6b00'; // Orange
+    } else {
+        ticketCountElement.style.color = '#f11b1b'; // Rouge original
+    }
+    
+    // Mettre à jour l'affichage
+    ticketCountElement.textContent = `Tickets restants : ${ticketsRestants}`;
+    
+    console.log(`Tickets calculés: ${ticketsRestants} (jours écoulés depuis 11/10/2025: ${joursEcoules})`);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Application Cetinfo chargée');
+    
+    // Initialiser le compteur de tickets
+    gererCompteurTickets();
     
     // Initialiser la vidéo après le chargement complet
     setTimeout(() => {

@@ -589,11 +589,12 @@ body {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-top: 7px;
 }
 
 .form-container h1 {
     color: #333;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     text-align: center;
     font-size: 2rem;
 }

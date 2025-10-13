@@ -70,8 +70,47 @@ NOUVEL ACHAT DE TICKET(S) CETINFO 2025
 Cet email a été envoyé automatiquement depuis le formulaire d'achat Cetinfo.
     `.trim();
     
+    // Méthode 1: mailto standard (fonctionne partout)
     const mailtoLink = `mailto:donaldpolidor30@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+    
+    // Méthode 2: Lien Gmail direct (pour les utilisateurs Gmail)
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=donaldpolidor30@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Détection du dispositif et choix de la méthode
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // Mobile - utiliser mailto standard
+        window.location.href = mailtoLink;
+    } else {
+        // Desktop - proposer les deux options
+        const utiliserGmail = confirm(
+            `Voulez-vous ouvrir Gmail pour envoyer l'email ?\n\n` +
+            `• Cliquez sur "OK" pour ouvrir Gmail\n` +
+            `• Cliquez sur "Annuler" pour utiliser votre client email par défaut`
+        );
+        
+        if (utiliserGmail) {
+            // Ouvrir Gmail dans un nouvel onglet
+            window.open(gmailLink, '_blank');
+        } else {
+            // Utiliser le client email par défaut
+            window.location.href = mailtoLink;
+        }
+    }
+}
+
+function afficherInstructionsEmail() {
+    const instructions = `
+📧 INSTRUCTIONS POUR ENVOYER L'EMAIL :
+
+1. Votre client email va s'ouvrir avec un email pré-rempli
+2. VÉRIFIEZ que toutes vos informations sont correctes
+3. CLIQUEZ sur "Envoyer" pour finaliser votre achat
+4. Attendez la confirmation de notre part
+
+⚠️ IMPORTANT : Votre achat n'est validé que lorsque vous avez envoyé l'email et reçu une confirmation !
+    `;
+    
+    return confirm(instructions + "\n\nCliquez sur OK pour continuer");
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -123,15 +162,24 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Afficher les instructions pour l'email
+        const continuer = afficherInstructionsEmail();
+        if (!continuer) {
+            return;
+        }
+        
         // Envoyer les données par email
         envoyerEmail(formData);
         
-        // Message de confirmation
-        alert(`🎉 Formulaire soumis avec succès!\n\nVous avez acheté ${formData.tickets.length} ticket(s) pour ${formData.total.toLocaleString()} Gdes\n\nUn email a été préparé avec vos informations.\nVeuillez l'envoyer pour finaliser votre achat.\n\nMerci pour votre participation!`);
+        // Message de confirmation final
+        alert(`🎉 Formulaire préparé avec succès!\n\n` +
+              `Un email a été préparé avec vos informations.\n` +
+              `VÉRIFIEZ et ENVOYEZ l'email pour finaliser votre achat.\n\n` +
+              `Vous serez redirigé vers la page d'accueil dans 5 secondes.`);
         
-        // Rediriger après 3 secondes
+        // Rediriger après 5 secondes
         setTimeout(() => {
             window.location.href = 'index.html';
-        }, 3000);
+        }, 5000);
     });
 });
