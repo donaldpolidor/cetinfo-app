@@ -70,25 +70,22 @@ NOUVEL ACHAT DE TICKET(S) CETINFO 2025
 Cet email a été envoyé automatiquement depuis le formulaire d'achat Cetinfo.
     `.trim();
     
-    // Lien Gmail direct - toujours utiliser cette méthode
-    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=donaldpolidor30@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Détection mobile vs desktop
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
-    // Ouvrir Gmail directement sans confirmation
-    const nouvelleFenetre = window.open(gmailLink, '_blank');
-    
-    // Si l'ouverture est bloquée, ouvrir dans le même onglet
-    if (!nouvelleFenetre || nouvelleFenetre.closed || typeof nouvelleFenetre.closed == 'undefined') {
-        window.location.href = 'https://mail.google.com/mail/u/0/#inbox?compose=new';
+    if (isMobile) {
+        // MOBILE : Utiliser mailto pour lancer l'app Gmail automatiquement
+        const mailtoLink = `mailto:donaldpolidor30@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+    } else {
+        // DESKTOP : Ouvrir Gmail dans un nouvel onglet
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=donaldpolidor30@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const nouvelleFenetre = window.open(gmailLink, '_blank');
         
-        // Donner un court délai puis copier le contenu
-        setTimeout(() => {
-            const textArea = document.createElement('textarea');
-            textArea.value = `Destinataire: donaldpolidor30@gmail.com\nSujet: ${subject}\n\n${body}`;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-        }, 1000);
+        // Si popup bloquée, ouvrir dans le même onglet
+        if (!nouvelleFenetre || nouvelleFenetre.closed || typeof nouvelleFenetre.closed == 'undefined') {
+            window.location.href = 'https://mail.google.com/mail/u/0/#inbox?compose=new';
+        }
     }
 }
 
