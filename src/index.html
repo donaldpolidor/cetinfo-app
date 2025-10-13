@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetinfo - Achat de Tickets en Ligne</title>
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header">
@@ -30,12 +30,12 @@
             <div class="video-section">
                 <h3 class="video-title">Découvrez notre vidéo de promotion</h3>
                 <div class="video-container">
-    <video controls class="promo-video" id="promoVideo" preload="metadata">
-        <source src="/video/videopub.mp4" type="video/mp4">
-        <source src="/video/videopub.webm" type="video/webm">
-        Votre navigateur ne supporte pas la lecture de vidéos.
-    </video>
-</div>
+                    <video controls class="promo-video" id="promoVideo" preload="metadata">
+                        <source src="/video/videopub.mp4" type="video/mp4">
+                        <source src="/video/videopub.webm" type="video/webm">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                </div>
                 <div class="video-controls">
                     <button class="video-control-btn" onclick="togglePlayPause()" id="playPauseBtn">
                         ▶️ Lecture
@@ -57,6 +57,7 @@
         <section class="prizes-section">
             <h2 class="section-title">Gros lots à gagner et Prix des tickets</h2>
             <div class="prizes-grid">
+                <!-- Vos cartes de prix existantes -->
                 <div class="prize-card">
                     <img src="images/prime/moto.jpg" alt="Motocyclette" class="prize-image" onclick="previewImage('images/prime/moto.jpg', 'Motocyclette')">
                     <h3 class="prize-name">Motocyclette</h3>
@@ -136,11 +137,40 @@
                 </div>
             </div>
         </section>
+
+        <!-- NOUVELLE SECTION : AFFICHES DE FORMATION -->
+        <section class="formations-section">
+            <h2 class="section-title">📚 Formations Disponibles au CETINFO</h2>
+            <div class="affiches-container">
+                <div class="affiches-scroll">
+                    <div class="affiche-item">
+                        <img src="images/affiche1.jpg" alt="Formation 1" class="affiche-image" onclick="previewImage('images/affiche1.jpg', 'Formation CETINFO 1')">
+                        <p class="affiche-title">SÉMINAIRES DE FORMATION</p>
+                    </div>
+                    <div class="affiche-item">
+                        <img src="images/affiche2.jpg" alt="Formation 2" class="affiche-image" onclick="previewImage('images/affiche2.jpg', 'Formation CETINFO 2')">
+                        <p class="affiche-title">FORMATIONS MODULAIRES</p>
+                    </div>
+                    <div class="affiche-item">
+                        <img src="images/affiche3.jpg" alt="Formation 3" class="affiche-image" onclick="previewImage('images/affiche3.jpg', 'Formation CETINFO 3')">
+                        <p class="affiche-title">CONTACT & ADRESSE</p>
+                    </div>
+                    <div class="affiche-item">
+                        <img src="images/affiche4.jpg" alt="Formation 4" class="affiche-image" onclick="previewImage('images/affiche4.jpg', 'Formation CETINFO 4')">
+                        <p class="affiche-title">FORMATIONS REGULÈRES</p>
+                    </div>
+                    <div class="affiche-item">
+                        <img src="images/affiche5.jpg" alt="Formation 5" class="affiche-image" onclick="previewImage('images/affiche5.jpg', 'Formation CETINFO 5')">
+                        <p class="affiche-title">FORMATIONS REGULÈRES</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
         <p>&copy; 2025 Cetinfo - Tous droits réservés</p>
-        <p>🌎 info@cetinfo.com | 📞 +(509) 3724-5036 / 3801-7951</p>
+        <p>🌎 info@cetinfo.com  |  📞 +(509) 3724-5036 / 3801-7951</p>
         <p>🗺 130, Ave. Martin Luther King (Pont Morin)📍</p>
     </footer>
 

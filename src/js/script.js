@@ -174,11 +174,32 @@ function gererCompteurTickets() {
     console.log(`Tickets calculés: ${ticketsRestants} (jours écoulés depuis 11/10/2025: ${joursEcoules})`);
 }
 
+// FONCTION POUR INITIALISER LE DÉFILEMENT DES AFFICHES
+function initialiserDefilementAffiches() {
+    const affichesScroll = document.querySelector('.affiches-scroll');
+    if (!affichesScroll) return;
+    
+    // Dupliquer les éléments d'affiches pour un effet continu sans espace
+    const affichesItems = affichesScroll.querySelectorAll('.affiche-item');
+    const nombreAffiches = affichesItems.length;
+    
+    // Cloner chaque affiche et l'ajouter à la fin
+    affichesItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        affichesScroll.appendChild(clone);
+    });
+    
+    console.log(`Défilement des affiches initialisé: ${nombreAffiches} affiches dupliquées`);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Application Cetinfo chargée');
     
     // Initialiser le compteur de tickets
     gererCompteurTickets();
+    
+    // Initialiser le défilement des affiches
+    initialiserDefilementAffiches();
     
     // Initialiser la vidéo après le chargement complet
     setTimeout(() => {
