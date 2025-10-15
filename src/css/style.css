@@ -555,7 +555,7 @@ body {
     }
 }
 
-/* Support spécifique iOS pour l'animation */
+/* AJUSTEMENTS SPÉCIFIQUES POUR iOS - Images des affiches */
 @supports (-webkit-touch-callout: none) {
     .affiches-scroll {
         animation: scrollAffiches 40s linear infinite;
@@ -566,10 +566,46 @@ body {
         max-width: 100%;
         height: auto;
         aspect-ratio: 3/4;
+        /* CORRECTION SPÉCIFIQUE POUR iOS - Réduction de la hauteur */
+        max-height: 280px;
+        object-fit: contain;
+        background-color: #f8f9fa;
+        padding: 5px;
     }
     
     .affiche-item {
-        min-width: 220px;
+        min-width: 200px;
+    }
+    
+    /* Ajustements supplémentaires pour les petits écrans iOS */
+    @media (max-width: 768px) {
+        .affiche-image {
+            max-height: 220px;
+        }
+        
+        .affiche-item {
+            min-width: 180px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .affiche-image {
+            max-height: 180px;
+        }
+        
+        .affiche-item {
+            min-width: 150px;
+        }
+    }
+    
+    @media (max-width: 360px) {
+        .affiche-image {
+            max-height: 160px;
+        }
+        
+        .affiche-item {
+            min-width: 130px;
+        }
     }
 }
 
