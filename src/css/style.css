@@ -101,6 +101,8 @@ body {
     letter-spacing: 1px;
     margin-top: 10px;
     margin-bottom: 15px;
+    -webkit-appearance: none;
+    min-height: 60px;
 }
 
 .buy-ticket-btn:hover {
@@ -156,7 +158,7 @@ body {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-size: 0.9rem;
     font-weight: bold;
     border-radius: 20px;
@@ -165,6 +167,8 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    -webkit-appearance: none;
+    min-height: 44px;
 }
 
 .video-control-btn:hover, .download-btn:hover, .share-btn:hover {
@@ -261,6 +265,21 @@ body {
     padding: 30px 20px;
     margin-top: 80px;
     backdrop-filter: blur(10px);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* Empêcher Safari de formater les numéros comme des liens */
+.footer p {
+    color: white !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.footer p, .footer a {
+    color: inherit;
+    text-decoration: none;
+    pointer-events: none;
 }
 
 .prizes-section {
@@ -312,8 +331,10 @@ body {
     margin-bottom: 15px;
     background-color: #f8f9fa;
     padding: 10px;
-    cursor: zoom-in;
+    cursor: pointer;
     transition: transform 0.3s ease;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .prize-image:hover {
@@ -350,6 +371,8 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-top: auto;
+    -webkit-appearance: none;
+    min-height: 44px;
 }
 
 .prize-buy-btn:hover {
@@ -419,6 +442,641 @@ body {
     transform: scale(1.05);
 }
 
+/* SECTION AFFICHES DE FORMATION - Version compatible iOS */
+.formations-section {
+    margin: 60px 0;
+    text-align: center;
+    background: white;
+    border-radius: 20px;
+    padding: 40px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.formations-section .section-title {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.affiches-container {
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.affiches-scroll {
+    display: flex;
+    gap: 25px;
+    animation: scrollAffiches 40s linear infinite;
+    padding: 10px 0;
+    will-change: transform;
+}
+
+.affiches-scroll:hover {
+    animation-play-state: paused;
+}
+
+.affiche-item {
+    flex: 0 0 auto;
+    text-align: center;
+    transition: transform 0.3s ease;
+    min-width: 250px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.affiche-item:hover {
+    transform: translateY(-5px);
+}
+
+.affiche-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.affiche-image:hover,
+.affiche-image:active {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    border-color: #667eea;
+}
+
+.affiche-title {
+    margin-top: 15px;
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+    -webkit-user-select: none;
+}
+
+/* Animation de défilement avec duplication */
+@keyframes scrollAffiches {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-250px * 5 - 25px * 5));
+    }
+}
+
+/* Support spécifique iOS pour l'animation */
+@supports (-webkit-touch-callout: none) {
+    .affiches-scroll {
+        animation: scrollAffiches 40s linear infinite;
+        -webkit-animation: scrollAffiches 40s linear infinite;
+    }
+    
+    .affiche-image {
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 3/4;
+    }
+    
+    .affiche-item {
+        min-width: 220px;
+    }
+}
+
+/* STYLES POUR LA PAGE ACHAT */
+.form-container {
+    max-width: 600px;
+    margin: 120px auto 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-top: 7px;
+    overflow: hidden;
+}
+
+.form-container h1 {
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.payment-info {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.payment-info h3 {
+    color: #856404;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.payment-info ol {
+    text-align: left;
+    margin-left: 20px;
+    color: #856404;
+}
+
+.payment-info li {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.payment-numbers {
+    color: #856404;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+    -webkit-appearance: none;
+}
+
+.form-group input:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    -webkit-appearance: none;
+    min-height: 50px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    width: 100%;
+    -webkit-appearance: none;
+    min-height: 44px;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Styles pour les checkboxes de tickets - CORRIGÉ */
+.tickets-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    background: white;
+}
+
+.tickets-checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.ticket-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: white;
+    min-height: 40px;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.ticket-option:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.ticket-checkbox {
+    margin-right: 10px;
+    transform: scale(1.1);
+    accent-color: #4CAF50;
+    cursor: pointer;
+}
+
+/* Styles pour les checkboxes de tickets - CORRECTION COMPLÈTE */
+.tickets-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    background: white;
+}
+
+.tickets-checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.ticket-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: white;
+    min-height: 40px;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+.ticket-option:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+/* CACHER LA CHECKBOX PAR DÉFAUT */
+.ticket-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* STYLES POUR LA CHECKBOX PERSONNALISÉE */
+.ticket-checkbox-custom {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    background: white;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+/* Style quand la checkbox est cochée */
+.ticket-checkbox:checked + .ticket-checkbox-custom {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.ticket-checkbox:checked + .ticket-checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Style pour l'option sélectionnée */
+.ticket-option.selected {
+    border-color: #4CAF50;
+    background: #f0fff4;
+}
+
+.ticket-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    gap: 8px;
+}
+
+.ticket-name {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.85rem;
+}
+
+.ticket-price {
+    font-weight: bold;
+    color: #f11b1b;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* Contrôles quantité avec boutons + et - */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.quantity-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+}
+
+.quantity-btn:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.quantity-btn:disabled {
+    background: #f8f9fa;
+    color: #ccc;
+    cursor: not-allowed;
+    border-color: #e9ecef;
+}
+
+.quantity-display {
+    min-width: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Styles spécifiques iOS pour les checkboxes - CORRIGÉ */
+@supports (-webkit-touch-callout: none) {
+    .ticket-option {
+        min-height: 44px;
+    }
+    
+    .ticket-checkbox {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        margin-right: 10px;
+        position: relative;
+        cursor: pointer;
+        background: white;
+    }
+    
+    .ticket-checkbox:checked {
+        background-color: #4CAF50;
+        border-color: #4CAF50;
+    }
+    
+    .ticket-checkbox:checked::after {
+        content: '✓';
+        position: absolute;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .ticket-label {
+        font-size: 16px;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .tickets-container {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.ticket-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    gap: 8px;
+}
+
+.ticket-name {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.85rem;
+}
+
+.ticket-price {
+    font-weight: bold;
+    color: #f11b1b;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* Contrôles quantité avec boutons + et - */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.quantity-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+}
+
+.quantity-btn:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.quantity-btn:disabled {
+    background: #f8f9fa;
+    color: #ccc;
+    cursor: not-allowed;
+    border-color: #e9ecef;
+}
+
+.quantity-display {
+    min-width: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Scrollbar personnalisée */
+.tickets-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tickets-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.tickets-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.tickets-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Styles pour l'affichage des tickets sélectionnés */
+.selected-tickets {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #dee2e6;
+    margin-bottom: 20px;
+}
+
+.selected-tickets h4 {
+    color: #333;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.selected-ticket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    margin: 6px 0;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    font-size: 0.9rem;
+}
+
+.selected-ticket-item .ticket-name {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.selected-ticket-item .ticket-price {
+    color: #f11b1b;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.selected-ticket-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.selected-quantity-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-appearance: none;
+}
+
+.selected-quantity-btn:hover {
+    background: #667eea;
+    color: white;
+}
+
+.quantity-value {
+    min-width: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#totalAmount {
+    text-align: center;
+    padding-top: 12px;
+    border-top: 2px solid #dee2e6;
+    margin-top: 12px;
+    font-size: 1.1rem;
+}
+
+/* MEDIA QUERIES RESPONSIVE */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2rem;
@@ -504,6 +1162,90 @@ body {
     .payment-icons {
         gap: 10px;
     }
+    
+    .tickets-checkbox-group {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+    
+    .ticket-option {
+        padding: 6px 8px;
+        min-height: 35px;
+    }
+    
+    .ticket-label {
+        font-size: 0.8rem;
+    }
+    
+    .tickets-container {
+        max-height: 180px;
+    }
+    
+    .selected-ticket-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 6px 10px;
+    }
+    
+    .form-container {
+        margin: 100px 15px 40px;
+        padding: 20px;
+    }
+    
+    .form-container h1 {
+        font-size: 1.6rem;
+    }
+    
+    .payment-info {
+        padding: 15px;
+    }
+    
+    .payment-info ol {
+        margin-left: 15px;
+    }
+    
+    .payment-numbers {
+        font-size: 1rem;
+    }
+    
+    /* Media queries pour les affiches sur mobile */
+    .formations-section {
+        margin: 40px 15px;
+        padding: 30px 15px;
+    }
+    
+    .formations-section .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    
+    .affiches-scroll {
+        gap: 20px;
+        animation: scrollAffiches 35s linear infinite;
+    }
+    
+    .affiche-item {
+        min-width: 200px;
+    }
+    
+    .affiche-image {
+        height: 250px;
+    }
+    
+    .affiche-title {
+        font-size: 1rem;
+    }
+    
+    .quantity-controls {
+        gap: 6px;
+    }
+    
+    .quantity-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -568,340 +1310,7 @@ body {
     .hero-section {
         padding: 25px 20px;
     }
-}
-
-@media (max-width: 360px) {
-    .prizes-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
     
-    .hero-section {
-        padding: 20px 15px;
-    }
-}
-
-/* style pour la page achat*/
-.form-container {
-    max-width: 600px;
-    margin: 120px auto 40px;
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    margin-top: 7px;
-}
-
-.form-container h1 {
-    color: #333;
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 2rem;
-}
-
-.payment-info {
-    background: #fff3cd;
-    border: 1px solid #ffeaa7;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 30px;
-}
-
-.payment-info h3 {
-    color: #856404;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.payment-info ol {
-    text-align: left;
-    margin-left: 20px;
-    color: #856404;
-}
-
-.payment-info li {
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.payment-numbers {
-    color: #856404;
-    font-weight: bold;
-    margin-top: 15px;
-    text-align: center;
-    font-size: 1.1rem;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-    font-size: 1rem;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-    font-family: inherit;
-}
-
-.form-group input:focus {
-    border-color: #667eea;
-    outline: none;
-    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
-}
-
-.submit-btn {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    margin-top: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-}
-
-.back-btn {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    font-size: 1rem;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 15px;
-    width: 100%;
-}
-
-.back-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .form-container {
-        margin: 100px 15px 40px;
-        padding: 20px;
-    }
-    
-    .form-container h1 {
-        font-size: 1.6rem;
-    }
-    
-    .payment-info {
-        padding: 15px;
-    }
-    
-    .payment-info ol {
-        margin-left: 15px;
-    }
-    
-    .payment-numbers {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .form-container {
-        margin: 90px 10px 30px;
-        padding: 15px;
-    }
-    
-    .form-container h1 {
-        font-size: 1.4rem;
-    }
-    
-    .submit-btn, .back-btn {
-        padding: 12px 20px;
-        font-size: 0.9rem;
-    }
-}
-
-/* Styles pour les checkboxes de tickets - Version compacte */
-.tickets-container {
-    max-height: 200px;
-    overflow-y: auto;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 10px;
-    background: white;
-}
-
-.tickets-checkbox-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-}
-
-.ticket-option {
-    display: flex;
-    align-items: center;
-    padding: 8px 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    background: white;
-    min-height: 40px;
-}
-
-.ticket-option:hover {
-    border-color: #667eea;
-    background: #f8f9ff;
-}
-
-.ticket-option:has(.ticket-checkbox:checked) {
-    border-color: #4CAF50;
-    background: #f0fff4;
-}
-
-.ticket-checkbox {
-    margin-right: 10px;
-    transform: scale(1.1);
-    accent-color: #4CAF50;
-}
-
-.ticket-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
-    font-size: 0.85rem;
-    gap: 8px;
-}
-
-.ticket-name {
-    font-weight: 600;
-    color: #333;
-    font-size: 0.85rem;
-}
-
-.ticket-price {
-    font-weight: bold;
-    color: #f11b1b;
-    font-size: 0.85rem;
-    white-space: nowrap;
-}
-
-/* Scrollbar personnalisée */
-.tickets-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.tickets-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 3px;
-}
-
-.tickets-container::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 3px;
-}
-
-.tickets-container::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-}
-
-/* Styles pour l'affichage des tickets sélectionnés */
-.selected-tickets {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    border: 2px solid #dee2e6;
-    margin-bottom: 20px;
-}
-
-.selected-tickets h4 {
-    color: #333;
-    margin-bottom: 12px;
-    font-size: 1rem;
-    text-align: center;
-}
-
-.selected-ticket-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
-    margin: 6px 0;
-    background: white;
-    border-radius: 6px;
-    border: 1px solid #dee2e6;
-    font-size: 0.9rem;
-}
-
-.selected-ticket-item .ticket-name {
-    color: #333;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.selected-ticket-item .ticket-price {
-    color: #f11b1b;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-#totalAmount {
-    text-align: center;
-    padding-top: 12px;
-    border-top: 2px solid #dee2e6;
-    margin-top: 12px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .tickets-checkbox-group {
-        grid-template-columns: 1fr;
-        gap: 6px;
-    }
-    
-    .ticket-option {
-        padding: 6px 8px;
-        min-height: 35px;
-    }
-    
-    .ticket-label {
-        font-size: 0.8rem;
-    }
-    
-    .tickets-container {
-        max-height: 180px;
-    }
-    
-    .selected-ticket-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-        padding: 6px 10px;
-    }
-}
-
-@media (max-width: 480px) {
     .tickets-container {
         max-height: 160px;
     }
@@ -918,149 +1327,22 @@ body {
     .selected-tickets {
         padding: 12px;
     }
-}
-
-
-/* SECTION AFFICHES DE FORMATION - Version avec duplication JS */
-.formations-section {
-    margin: 60px 0;
-    text-align: center;
-    background: white;
-    border-radius: 20px;
-    padding: 40px 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.formations-section .section-title {
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 2rem;
-}
-
-.affiches-container {
-    overflow: hidden;
-    position: relative;
-    padding: 20px 0;
-}
-
-.affiches-scroll {
-    display: flex;
-    gap: 25px;
-    animation: scrollAffiches 40s linear infinite;
-    padding: 10px 0;
-}
-
-.affiches-scroll:hover {
-    animation-play-state: paused;
-}
-
-.affiche-item {
-    flex: 0 0 auto;
-    text-align: center;
-    transition: transform 0.3s ease;
-    min-width: 250px;
-}
-
-.affiche-item:hover {
-    transform: translateY(-5px);
-}
-
-.affiche-image {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 15px;
-    cursor: zoom-in;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-    border: 3px solid transparent;
-}
-
-.affiche-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-    border-color: #667eea;
-}
-
-.affiche-title {
-    margin-top: 15px;
-    font-weight: 600;
-    color: #333;
-    font-size: 1.1rem;
-}
-
-/* Animation de défilement avec duplication */
-@keyframes scrollAffiches {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-250px * 5 - 25px * 5));
-    }
-}
-
-/* RESPONSIVE - mêmes règles que précédemment */
-@media (max-width: 1024px) {
-    .affiche-item {
-        min-width: 220px;
+    
+    .form-container {
+        margin: 90px 10px 30px;
+        padding: 15px;
     }
     
-    .affiche-image {
-        height: 300px;
+    .form-container h1 {
+        font-size: 1.4rem;
     }
     
-    @keyframes scrollAffiches {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(calc(-220px * 5 - 25px * 5));
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .formations-section {
-        margin: 40px 15px;
-        padding: 30px 15px;
+    .submit-btn, .back-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
     }
     
-    .formations-section .section-title {
-        font-size: 1.6rem;
-        margin-bottom: 20px;
-    }
-    
-    .affiches-scroll {
-        gap: 20px;
-        animation: scrollAffiches 35s linear infinite;
-    }
-    
-    .affiche-item {
-        min-width: 200px;
-    }
-    
-    .affiche-image {
-        height: 250px;
-    }
-    
-    .affiche-title {
-        font-size: 1rem;
-    }
-    
-    @keyframes scrollAffiches {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(calc(-200px * 5 - 20px * 5));
-        }
-    }
-}
-
-@media (max-width: 480px) {
+    /* Media queries pour les affiches sur très petits écrans */
     .formations-section {
         margin: 30px 10px;
         padding: 20px 10px;
@@ -1089,17 +1371,28 @@ body {
         margin-top: 10px;
     }
     
-    @keyframes scrollAffiches {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(calc(-160px * 5 - 15px * 5));
-        }
+    .quantity-controls {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .quantity-btn {
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
     }
 }
 
 @media (max-width: 360px) {
+    .prizes-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .hero-section {
+        padding: 20px 15px;
+    }
+    
     .affiche-item {
         min-width: 140px;
     }
@@ -1107,13 +1400,15 @@ body {
     .affiche-image {
         height: 180px;
     }
+}
+
+/* Support spécifique pour les appareils iOS */
+@supports (-webkit-touch-callout: none) {
+    body.ios-device {
+        /* Styles spécifiques iOS si nécessaire */
+    }
     
-    @keyframes scrollAffiches {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(calc(-140px * 5 - 15px * 5));
-        }
+    .form-group input {
+        font-size: 16px; /* Empêche le zoom automatique sur iOS */
     }
 }

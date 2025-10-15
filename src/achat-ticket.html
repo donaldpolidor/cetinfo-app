@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Achat de Ticket - Cetinfo</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -40,48 +40,54 @@
                     
                     <div class="tickets-container">
                         <div class="tickets-checkbox-group">
-                            <div class="ticket-option">
+                            <div class="ticket-option" data-ticket="Motocyclette" data-price="1500">
                                 <input type="checkbox" id="ticket-moto" name="tickets" value="Motocyclette-1500" class="ticket-checkbox">
+                                <span class="ticket-checkbox-custom"></span>
                                 <label for="ticket-moto" class="ticket-label">
                                     <span class="ticket-name">Motocyclette</span>
                                     <span class="ticket-price">1,500 Gdes</span>
                                 </label>
                             </div>
                             
-                            <div class="ticket-option">
+                            <div class="ticket-option" data-ticket="Laptop" data-price="1000">
                                 <input type="checkbox" id="ticket-laptop" name="tickets" value="Laptop-1000" class="ticket-checkbox">
+                                <span class="ticket-checkbox-custom"></span>
                                 <label for="ticket-laptop" class="ticket-label">
                                     <span class="ticket-name">Laptop</span>
                                     <span class="ticket-price">1,000 Gdes</span>
                                 </label>
                             </div>
                             
-                            <div class="ticket-option">
+                            <div class="ticket-option" data-ticket="Freezer" data-price="1000">
                                 <input type="checkbox" id="ticket-freezer" name="tickets" value="Freezer-1000" class="ticket-checkbox">
+                                <span class="ticket-checkbox-custom"></span>
                                 <label for="ticket-freezer" class="ticket-label">
                                     <span class="ticket-name">Freezer</span>
                                     <span class="ticket-price">1,000 Gdes</span>
                                 </label>
                             </div>
                             
-                            <div class="ticket-option">
+                            <div class="ticket-option" data-ticket="Smart TV" data-price="1000">
                                 <input type="checkbox" id="ticket-tv" name="tickets" value="Smart TV-1000" class="ticket-checkbox">
+                                <span class="ticket-checkbox-custom"></span>
                                 <label for="ticket-tv" class="ticket-label">
                                     <span class="ticket-name">Smart TV</span>
                                     <span class="ticket-price">1,000 Gdes</span>
                                 </label>
                             </div>
                             
-                            <div class="ticket-option">
+                            <div class="ticket-option" data-ticket="Caméra" data-price="750">
                                 <input type="checkbox" id="ticket-camera" name="tickets" value="Caméra-750" class="ticket-checkbox">
+                                <span class="ticket-checkbox-custom"></span>
                                 <label for="ticket-camera" class="ticket-label">
                                     <span class="ticket-name">Caméra</span>
                                     <span class="ticket-price">750 Gdes</span>
                                 </label>
                             </div>
                             
-                            <div class="ticket-option">
+                            <div class="ticket-option" data-ticket="Téléphone" data-price="500">
                                 <input type="checkbox" id="ticket-phone" name="tickets" value="Téléphone-500" class="ticket-checkbox">
+                                <span class="ticket-checkbox-custom"></span>
                                 <label for="ticket-phone" class="ticket-label">
                                     <span class="ticket-name">Téléphone</span>
                                     <span class="ticket-price">500 Gdes</span>
@@ -127,9 +133,7 @@
                 
                 <div class="form-group">
                     <label for="transactionId">ID Transaction *</label>
-                    <input type="text" id="transactionId" name="transactionId" required 
-                           placeholder="
-                           ">
+                    <input type="text" id="transactionId" name="transactionId" required placeholder="Entrez le ID de transaction">
                 </div>
                 
                 <button type="submit" class="submit-btn">Soumettre l'Achat</button>
@@ -141,7 +145,7 @@
 
     <footer class="footer">
         <p>&copy; 2025 Cetinfo - Tous droits réservés</p>
-        <p>🌎 info@cetinfo.com  |  📞 +(509) 3724-5036 / 3801-7951</p>
+        <p>🌎 info@cetinfo.com  |  📞 <span style="color: white; text-decoration: none;">+(509) 3724-5036 / 3801-7951</span></p>
         <p>🗺 130, Ave. Martin Luther King (Pont Morin)📍</p>
     </footer>
 

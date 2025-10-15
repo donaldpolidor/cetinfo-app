@@ -1,14 +1,55 @@
+// Stockage des quantités
+let ticketQuantities = {
+    'Motocyclette': 0,
+    'Laptop': 0,
+    'Freezer': 0,
+    'Smart TV': 0,
+    'Caméra': 0,
+    'Téléphone': 0
+};
+
 function retourAccueil() {
     window.location.href = 'index.html';
 }
 
+// Fonction pour changer la quantité d'un ticket
+function changeQuantity(ticketName, change) {
+    const currentQuantity = ticketQuantities[ticketName] || 0;
+    let newQuantity = currentQuantity + change;
+    
+    // Empêcher les quantités négatives
+    if (newQuantity < 0) newQuantity = 0;
+    
+    // Mettre à jour la quantité
+    ticketQuantities[ticketName] = newQuantity;
+    
+    // Mettre à jour le checkbox
+    const checkbox = document.querySelector(`.ticket-option[data-ticket="${ticketName}"] .ticket-checkbox`);
+    const ticketOption = document.querySelector(`.ticket-option[data-ticket="${ticketName}"]`);
+    
+    if (newQuantity > 0) {
+        checkbox.checked = true;
+        ticketOption.classList.add('selected');
+    } else {
+        checkbox.checked = false;
+        ticketOption.classList.remove('selected');
+    }
+    
+    // Mettre à jour l'affichage des tickets sélectionnés
+    updateSelectedTickets();
+}
+
 function updateSelectedTickets() {
-    const checkboxes = document.querySelectorAll('.ticket-checkbox:checked');
     const selectedTicketsDiv = document.getElementById('selectedTickets');
     const ticketsListDiv = document.getElementById('ticketsList');
     const totalAmountDiv = document.getElementById('totalAmount');
     
-    if (checkboxes.length === 0) {
+    // Filtrer les tickets avec quantité > 0
+    const selectedTickets = Object.entries(ticketQuantities)
+        .filter(([ticket, quantity]) => quantity > 0)
+        .map(([ticket, quantity]) => ({ ticket, quantity }));
+    
+    if (selectedTickets.length === 0) {
         selectedTicketsDiv.style.display = 'none';
         return null;
     }
@@ -19,33 +60,62 @@ function updateSelectedTickets() {
     let total = 0;
     const ticketsSummary = [];
     
-    checkboxes.forEach(checkbox => {
-        const [ticketName, priceStr] = checkbox.value.split('-');
-        const price = parseInt(priceStr);
-        total += price;
+    selectedTickets.forEach(({ ticket, quantity }) => {
+        const price = getTicketPrice(ticket);
+        const subtotal = price * quantity;
+        total += subtotal;
         
         const ticketDiv = document.createElement('div');
         ticketDiv.className = 'selected-ticket-item';
         ticketDiv.innerHTML = `
-            <span class="ticket-name">${ticketName}</span>
-            <span class="ticket-price">${price.toLocaleString()} Gdes</span>
+            <div class="ticket-info">
+                <span class="ticket-name">${ticket}</span>
+                <span class="ticket-price">${price.toLocaleString()} Gdes</span>
+            </div>
+            <div class="selected-ticket-quantity">
+                <button type="button" class="selected-quantity-btn minus">-</button>
+                <span class="quantity-value">${quantity}</span>
+                <button type="button" class="selected-quantity-btn plus">+</button>
+            </div>
+            <div class="ticket-subtotal">${subtotal.toLocaleString()} Gdes</div>
         `;
         ticketsListDiv.appendChild(ticketDiv);
         
-        ticketsSummary.push(`${ticketName} (${price.toLocaleString()} Gdes)`);
+        // Ajouter les écouteurs d'événements pour les boutons de quantité
+        const minusBtn = ticketDiv.querySelector('.minus');
+        const plusBtn = ticketDiv.querySelector('.plus');
+        
+        minusBtn.addEventListener('click', () => changeQuantity(ticket, -1));
+        plusBtn.addEventListener('click', () => changeQuantity(ticket, 1));
+        
+        ticketsSummary.push(`${ticket} (${quantity} × ${price.toLocaleString()} Gdes)`);
     });
     
     totalAmountDiv.textContent = `💰 Total: ${total.toLocaleString()} Gdes`;
     
     return {
         tickets: ticketsSummary,
-        total: total
+        total: total,
+        detailedTickets: selectedTickets
     };
+}
+
+// Fonction pour obtenir le prix d'un ticket
+function getTicketPrice(ticketName) {
+    const prices = {
+        'Motocyclette': 1500,
+        'Laptop': 1000,
+        'Freezer': 1000,
+        'Smart TV': 1000,
+        'Caméra': 750,
+        'Téléphone': 500
+    };
+    return prices[ticketName] || 0;
 }
 
 function envoyerEmail(formData) {
     const ticketsList = formData.tickets.join('\n• ');
-    const subject = `Nouvel achat de ${formData.tickets.length} ticket(s) - ${formData.prenom} ${formData.nom}`;
+    const subject = `Nouvel achat de ${formData.detailedTickets.reduce((sum, t) => sum + t.quantity, 0)} ticket(s) - ${formData.prenom} ${formData.nom}`;
     const body = `
 NOUVEL ACHAT DE TICKET(S) CETINFO 2025
 
@@ -56,7 +126,7 @@ NOUVEL ACHAT DE TICKET(S) CETINFO 2025
 • Téléphone: ${formData.telephone}
 • Email: ${formData.email}
 
-🎫 TICKETS ACHETÉS (${formData.tickets.length} ticket(s)):
+🎫 TICKETS ACHETÉS (${formData.detailedTickets.reduce((sum, t) => sum + t.quantity, 0)} ticket(s)):
 • ${ticketsList}
 
 💰 MONTANT TOTAL: ${formData.total.toLocaleString()} Gdes
@@ -67,7 +137,7 @@ NOUVEL ACHAT DE TICKET(S) CETINFO 2025
 • Heure: ${formData.heure}
 
 ---
-Cet email a été envoyé automatiquement depuis le formulaire d'achat Cetinfo.
+Cet email a été envoyé automatiquement depuis le formulaire d'achat CETINFO.
     `.trim();
     
     // Détection mobile vs desktop
@@ -91,11 +161,48 @@ Cet email a été envoyé automatiquement depuis le formulaire d'achat Cetinfo.
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('achatForm');
-    const checkboxes = document.querySelectorAll('.ticket-checkbox');
     
-    // Mettre à jour l'affichage quand un checkbox est cliqué
+    // Initialiser les écouteurs d'événements pour les options de ticket
+    const ticketOptions = document.querySelectorAll('.ticket-option');
+    ticketOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            const ticketName = this.dataset.ticket;
+            
+            if (ticketQuantities[ticketName] === 0) {
+                // Premier clic : cocher et mettre la quantité à 1
+                const checkbox = this.querySelector('.ticket-checkbox');
+                checkbox.checked = true;
+                this.classList.add('selected');
+                changeQuantity(ticketName, 1);
+            } else {
+                // Clic suivant : décocher et réinitialiser
+                const checkbox = this.querySelector('.ticket-checkbox');
+                checkbox.checked = false;
+                this.classList.remove('selected');
+                changeQuantity(ticketName, -ticketQuantities[ticketName]);
+            }
+        });
+    });
+    
+    // Initialiser les écouteurs d'événements pour les checkboxes
+    const checkboxes = document.querySelectorAll('.ticket-checkbox');
     checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateSelectedTickets);
+        checkbox.addEventListener('change', function() {
+            const ticketOption = this.closest('.ticket-option');
+            const ticketName = ticketOption.dataset.ticket;
+            
+            if (this.checked) {
+                ticketOption.classList.add('selected');
+                // Initialiser la quantité à 1 si c'est la première sélection
+                if (ticketQuantities[ticketName] === 0) {
+                    changeQuantity(ticketName, 1);
+                }
+            } else {
+                ticketOption.classList.remove('selected');
+                // Réinitialiser la quantité à 0
+                changeQuantity(ticketName, -ticketQuantities[ticketName]);
+            }
+        });
     });
     
     form.addEventListener('submit', function(e) {
@@ -103,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Récupérer les tickets sélectionnés
         const ticketsData = updateSelectedTickets();
-        if (!ticketsData || ticketsData.tickets.length === 0) {
+        if (!ticketsData || ticketsData.detailedTickets.length === 0) {
             alert('Veuillez sélectionner au moins un ticket');
             return;
         }
@@ -119,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
             transactionId: document.getElementById('transactionId').value.trim(),
             tickets: ticketsData.tickets,
             total: ticketsData.total,
+            detailedTickets: ticketsData.detailedTickets,
             date: maintenant.toLocaleDateString('fr-FR'),
             heure: maintenant.toLocaleTimeString('fr-FR')
         };
@@ -129,9 +237,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // UNIQUEMENT la confirmation d'achat
+        // Confirmation d'achat
+        const totalTickets = formData.detailedTickets.reduce((sum, t) => sum + t.quantity, 0);
         const confirmation = confirm(
-            `Confirmez-vous l'achat de ${formData.tickets.length} ticket(s) pour un total de ${formData.total.toLocaleString()} Gdes ?`
+            `Confirmez-vous l'achat de ${totalTickets} ticket(s) pour un total de ${formData.total.toLocaleString()} Gdes ?`
         );
         
         if (!confirmation) {
