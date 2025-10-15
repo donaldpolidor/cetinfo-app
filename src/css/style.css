@@ -555,56 +555,72 @@ body {
     }
 }
 
-/* AJUSTEMENTS SPÉCIFIQUES POUR iOS - Images des affiches */
+/* CORRECTIONS SPÉCIFIQUES POUR iOS - SANS AFFECTER ANDROID */
 @supports (-webkit-touch-callout: none) {
-    .affiches-scroll {
-        animation: scrollAffiches 40s linear infinite;
-        -webkit-animation: scrollAffiches 40s linear infinite;
-    }
-    
     .affiche-image {
-        max-width: 100%;
-        height: auto;
-        aspect-ratio: 3/4;
-        /* CORRECTION SPÉCIFIQUE POUR iOS - Réduction de la hauteur */
-        max-height: 280px;
-        object-fit: contain;
-        background-color: #f8f9fa;
-        padding: 5px;
+        height: 320px !important;
+        object-fit: cover;
     }
     
     .affiche-item {
-        min-width: 200px;
+        min-width: 230px;
     }
     
-    /* Ajustements supplémentaires pour les petits écrans iOS */
+    /* Ajustements responsives pour iOS */
     @media (max-width: 768px) {
         .affiche-image {
-            max-height: 220px;
+            height: 280px !important;
         }
         
         .affiche-item {
-            min-width: 180px;
+            min-width: 200px;
+        }
+        
+        @keyframes scrollAffiches {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-200px * 5 - 25px * 5));
+            }
         }
     }
     
     @media (max-width: 480px) {
         .affiche-image {
-            max-height: 180px;
+            height: 240px !important;
         }
         
         .affiche-item {
-            min-width: 150px;
+            min-width: 170px;
+        }
+        
+        @keyframes scrollAffiches {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-170px * 5 - 25px * 5));
+            }
         }
     }
     
     @media (max-width: 360px) {
         .affiche-image {
-            max-height: 160px;
+            height: 220px !important;
         }
         
         .affiche-item {
-            min-width: 130px;
+            min-width: 150px;
+        }
+        
+        @keyframes scrollAffiches {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-150px * 5 - 25px * 5));
+            }
         }
     }
 }
