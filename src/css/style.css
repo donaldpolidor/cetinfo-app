@@ -38,26 +38,29 @@ body {
     font-style: italic;
 }
 
+/* CORRECTION : Augmentation de la marge pour éviter le chevauchement */
 .main-container {
-    margin-top: 120px;
+    margin-top: 140px;
     padding: 40px 20px;
     text-align: center;
 }
 
+/* CORRECTION : Ajout de padding-top supplémentaire pour la section hero */
 .hero-section {
     background: white;
     border-radius: 20px;
-    padding: 50px 40px;
+    padding: 60px 40px 50px 40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     max-width: 900px;
     margin: 0 auto;
     width: 95%;
+    margin-top: 20px;
 }
 
 .hero-title {
     font-size: 2.5rem;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: bold;
 }
 
@@ -75,14 +78,14 @@ body {
 .ticket-count {
     font-size: 1.5rem;
     color: #f11b1b;
-    margin: 20px 0 10px 0;
+    margin: 25px 0 15px 0;
     font-weight: bold;
 }
 
 .deadline {
     font-size: 1.2rem;
     color: #666;
-    margin-top: 15px;
+    margin-top: 20px;
     font-style: italic;
 }
 
@@ -99,9 +102,12 @@ body {
     box-shadow: 0 5px 15px rgba(238, 90, 36, 0.4);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    /* COMPATIBILITÉ APPEARANCE */
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     min-height: 60px;
 }
 
@@ -116,7 +122,7 @@ body {
 }
 
 .video-section {
-    margin-top: 40px;
+    margin-top: 50px;
     padding: 30px;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 15px;
@@ -126,7 +132,7 @@ body {
 .video-title {
     font-size: 1.5rem;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-align: center;
     font-weight: bold;
 }
@@ -167,7 +173,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    /* COMPATIBILITÉ APPEARANCE */
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     min-height: 44px;
 }
 
@@ -333,7 +342,11 @@ body {
     padding: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
+    /* COMPATIBILITÉ USER-SELECT */
     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     -webkit-touch-callout: none;
 }
 
@@ -371,7 +384,10 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-top: auto;
+    /* COMPATIBILITÉ APPEARANCE */
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     min-height: 44px;
 }
 
@@ -502,7 +518,11 @@ body {
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     transition: all 0.3s ease;
     border: 3px solid transparent;
+    /* COMPATIBILITÉ USER-SELECT */
     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     -webkit-touch-callout: none;
 }
 
@@ -518,7 +538,11 @@ body {
     font-weight: 600;
     color: #333;
     font-size: 1.1rem;
+    /* COMPATIBILITÉ USER-SELECT */
     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* Animation de défilement avec duplication */
@@ -552,12 +576,11 @@ body {
 /* STYLES POUR LA PAGE ACHAT */
 .form-container {
     max-width: 600px;
-    margin: 120px auto 40px;
+    margin: 140px auto 40px;
     background: white;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    margin-top: 7px;
     overflow: hidden;
 }
 
@@ -622,7 +645,10 @@ body {
     font-size: 16px;
     transition: border-color 0.3s ease;
     font-family: inherit;
+    /* COMPATIBILITÉ APPEARANCE */
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .form-group input:focus {
@@ -645,7 +671,10 @@ body {
     margin-top: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    /* COMPATIBILITÉ APPEARANCE */
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     min-height: 50px;
 }
 
@@ -665,55 +694,16 @@ body {
     transition: all 0.3s ease;
     margin-top: 15px;
     width: 100%;
+    /* COMPATIBILITÉ APPEARANCE */
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     min-height: 44px;
 }
 
 .back-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-/* Styles pour les checkboxes de tickets - CORRIGÉ */
-.tickets-container {
-    max-height: 200px;
-    overflow-y: auto;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 10px;
-    background: white;
-}
-
-.tickets-checkbox-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-}
-
-.ticket-option {
-    display: flex;
-    align-items: center;
-    padding: 8px 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    background: white;
-    min-height: 40px;
-    -webkit-tap-highlight-color: transparent;
-    position: relative;
-}
-
-.ticket-option:hover {
-    border-color: #667eea;
-    background: #f8f9ff;
-}
-
-.ticket-checkbox {
-    margin-right: 10px;
-    transform: scale(1.1);
-    accent-color: #4CAF50;
-    cursor: pointer;
 }
 
 /* Styles pour les checkboxes de tickets - CORRECTION COMPLÈTE */
@@ -820,162 +810,6 @@ body {
     white-space: nowrap;
 }
 
-/* Contrôles quantité avec boutons + et - */
-.quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-left: auto;
-}
-
-.quantity-btn {
-    width: 28px;
-    height: 28px;
-    border: 1px solid #ddd;
-    background: #f8f9fa;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: all 0.2s ease;
-    -webkit-appearance: none;
-}
-
-.quantity-btn:hover {
-    background: #667eea;
-    color: white;
-    border-color: #667eea;
-}
-
-.quantity-btn:disabled {
-    background: #f8f9fa;
-    color: #ccc;
-    cursor: not-allowed;
-    border-color: #e9ecef;
-}
-
-.quantity-display {
-    min-width: 30px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-/* Styles spécifiques iOS pour les checkboxes - CORRIGÉ */
-@supports (-webkit-touch-callout: none) {
-    .ticket-option {
-        min-height: 44px;
-    }
-    
-    .ticket-checkbox {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 20px;
-        height: 20px;
-        border: 2px solid #ddd;
-        border-radius: 4px;
-        margin-right: 10px;
-        position: relative;
-        cursor: pointer;
-        background: white;
-    }
-    
-    .ticket-checkbox:checked {
-        background-color: #4CAF50;
-        border-color: #4CAF50;
-    }
-    
-    .ticket-checkbox:checked::after {
-        content: '✓';
-        position: absolute;
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    
-    .ticket-label {
-        font-size: 16px;
-        -webkit-tap-highlight-color: transparent;
-    }
-    
-    .tickets-container {
-        -webkit-overflow-scrolling: touch;
-    }
-}
-
-.ticket-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
-    font-size: 0.85rem;
-    gap: 8px;
-}
-
-.ticket-name {
-    font-weight: 600;
-    color: #333;
-    font-size: 0.85rem;
-}
-
-.ticket-price {
-    font-weight: bold;
-    color: #f11b1b;
-    font-size: 0.85rem;
-    white-space: nowrap;
-}
-
-/* Contrôles quantité avec boutons + et - */
-.quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-left: auto;
-}
-
-.quantity-btn {
-    width: 28px;
-    height: 28px;
-    border: 1px solid #ddd;
-    background: #f8f9fa;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: all 0.2s ease;
-    -webkit-appearance: none;
-}
-
-.quantity-btn:hover {
-    background: #667eea;
-    color: white;
-    border-color: #667eea;
-}
-
-.quantity-btn:disabled {
-    background: #f8f9fa;
-    color: #ccc;
-    cursor: not-allowed;
-    border-color: #e9ecef;
-}
-
-.quantity-display {
-    min-width: 30px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
 /* Scrollbar personnalisée */
 .tickets-container::-webkit-scrollbar {
     width: 6px;
@@ -1015,57 +849,86 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 12px;
-    margin: 6px 0;
+    padding: 12px 15px;
+    margin: 8px 0;
     background: white;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #dee2e6;
     font-size: 0.9rem;
+}
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .selected-ticket-item .ticket-name {
     color: #333;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
 }
 
 .selected-ticket-item .ticket-price {
     color: #f11b1b;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .selected-ticket-quantity {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-left: auto;
+    gap: 10px;
+    margin: 0 15px;
 }
 
 .selected-quantity-btn {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border: 1px solid #ddd;
     background: #f8f9fa;
-    border-radius: 3px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
+    transition: all 0.2s ease;
+    /* COMPATIBILITÉ APPEARANCE */
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .selected-quantity-btn:hover {
     background: #667eea;
     color: white;
+    border-color: #667eea;
+}
+
+.selected-quantity-btn:disabled {
+    background: #f8f9fa;
+    color: #ccc;
+    cursor: not-allowed;
+    border-color: #e9ecef;
 }
 
 .quantity-value {
-    min-width: 20px;
+    min-width: 30px;
     text-align: center;
     font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+.ticket-subtotal {
+    font-weight: bold;
+    color: #f11b1b;
+    font-size: 0.95rem;
+    min-width: 80px;
+    text-align: right;
 }
 
 #totalAmount {
@@ -1074,6 +937,54 @@ body {
     border-top: 2px solid #dee2e6;
     margin-top: 12px;
     font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Styles spécifiques iOS pour les checkboxes - CORRIGÉ */
+@supports (-webkit-touch-callout: none) {
+    .ticket-option {
+        min-height: 44px;
+    }
+    
+    .ticket-checkbox {
+        /* COMPATIBILITÉ APPEARANCE */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        margin-right: 10px;
+        position: relative;
+        cursor: pointer;
+        background: white;
+    }
+    
+    .ticket-checkbox:checked {
+        background-color: #4CAF50;
+        border-color: #4CAF50;
+    }
+    
+    .ticket-checkbox:checked::after {
+        content: '✓';
+        position: absolute;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .ticket-label {
+        font-size: 16px;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .tickets-container {
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 /* MEDIA QUERIES RESPONSIVE */
@@ -1092,24 +1003,34 @@ body {
         font-size: 1rem;
     }
     
+    /* CORRECTION : Marge augmentée pour mobile */
     .main-container {
-        margin-top: 100px;
-        padding: 20px 15px;
+        margin-top: 130px;
+        padding: 25px 15px;
     }
     
     .hero-section {
         max-width: 95%;
-        padding: 30px 25px;
+        padding: 40px 25px 30px 25px;
+        margin-top: 15px;
+    }
+    
+    .hero-title {
+        margin-bottom: 20px;
+    }
+    
+    .ticket-count {
+        margin: 20px 0 12px 0;
+    }
+    
+    .video-section {
+        margin-top: 40px;
+        padding: 25px;
     }
     
     .features {
         grid-template-columns: 1fr;
         gap: 20px;
-    }
-    
-    .video-section {
-        padding: 20px;
-        margin-top: 30px;
     }
     
     .video-title {
@@ -1184,12 +1105,21 @@ body {
     .selected-ticket-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 4px;
-        padding: 6px 10px;
+        gap: 8px;
+        padding: 10px 12px;
+    }
+    
+    .selected-ticket-quantity {
+        margin: 5px 0;
+        align-self: center;
+    }
+    
+    .ticket-subtotal {
+        align-self: flex-end;
     }
     
     .form-container {
-        margin: 100px 15px 40px;
+        margin: 130px 15px 40px;
         padding: 20px;
     }
     
@@ -1235,16 +1165,6 @@ body {
     
     .affiche-title {
         font-size: 1rem;
-    }
-    
-    .quantity-controls {
-        gap: 6px;
-    }
-    
-    .quantity-btn {
-        width: 24px;
-        height: 24px;
-        font-size: 14px;
     }
 }
 
@@ -1307,8 +1227,40 @@ body {
         height: 45px;
     }
     
+    /* CORRECTION : Marge supplémentaire pour très petits écrans */
+    .main-container {
+        margin-top: 125px;
+        padding: 20px 10px;
+    }
+    
     .hero-section {
-        padding: 25px 20px;
+        padding: 35px 20px 25px 20px;
+        margin-top: 10px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        margin-bottom: 18px;
+    }
+    
+    .ticket-count {
+        font-size: 1.3rem;
+        margin: 18px 0 10px 0;
+    }
+    
+    .deadline {
+        margin-top: 15px;
+        font-size: 1.1rem;
+    }
+    
+    .buy-ticket-btn {
+        margin-top: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .video-section {
+        margin-top: 35px;
+        padding: 20px;
     }
     
     .tickets-container {
@@ -1329,7 +1281,7 @@ body {
     }
     
     .form-container {
-        margin: 90px 10px 30px;
+        margin: 125px 10px 30px;
         padding: 15px;
     }
     
@@ -1371,15 +1323,15 @@ body {
         margin-top: 10px;
     }
     
-    .quantity-controls {
-        flex-direction: column;
-        gap: 4px;
+    .selected-quantity-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
     }
     
-    .quantity-btn {
-        width: 22px;
-        height: 22px;
-        font-size: 12px;
+    .quantity-value {
+        min-width: 25px;
+        font-size: 0.9rem;
     }
 }
 
@@ -1402,13 +1354,25 @@ body {
     }
 }
 
-/* Support spécifique pour les appareils iOS */
+/* CORRECTION SPÉCIFIQUE POUR iOS */
 @supports (-webkit-touch-callout: none) {
-    body.ios-device {
-        /* Styles spécifiques iOS si nécessaire */
+    .main-container {
+        margin-top: 150px;
+    }
+    
+    @media (max-width: 768px) {
+        .main-container {
+            margin-top: 140px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .main-container {
+            margin-top: 135px;
+        }
     }
     
     .form-group input {
-        font-size: 16px; /* Empêche le zoom automatique sur iOS */
+        font-size: 16px;
     }
 }
