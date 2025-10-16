@@ -523,14 +523,42 @@ a[href^="tel"] {
     border-color: #667eea;
 }
 
-/* Styles pour les tickets sélectionnables */
+/* ASCENSEUR POUR LA SECTION TICKETS DANS LE FORMULAIRE */
 .tickets-container {
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     padding: 20px;
     background: #f8f9fa;
+    max-height: 400px; /* Hauteur fixe pour déclencher l'ascenseur */
+    overflow-y: auto; /* Ascenseur vertical */
 }
 
+/* Style personnalisé pour l'ascenseur */
+.tickets-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tickets-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.tickets-container::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+.tickets-container::-webkit-scrollbar-thumb:hover {
+    background: #5a6fd8;
+}
+
+/* Pour Firefox */
+.tickets-container {
+    scrollbar-width: thin;
+    scrollbar-color: #667eea #f1f1f1;
+}
+
+/* Styles pour les tickets sélectionnables */
 .tickets-checkbox-group {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -677,18 +705,6 @@ a[href^="tel"] {
     gap: 4px;
     flex: 1;
     text-align: left;
-}
-
-.ticket-name {
-    font-weight: bold;
-    color: #333;
-    font-size: 1rem;
-}
-
-.ticket-price {
-    color: #f11b1b;
-    font-weight: 600;
-    font-size: 1.1rem;
 }
 
 .selected-ticket-quantity {
@@ -863,7 +879,7 @@ a[href^="tel"] {
         padding: 25px 15px;
     }
     
-    /* 2 colonnes pour les petits écrans */
+    /* 2 COLONNES POUR LES PRIMES SUR PETITS ÉCRANS */
     .prizes-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 15px;
@@ -875,15 +891,20 @@ a[href^="tel"] {
     }
     
     .prize-image {
-        height: 180px;
+        height: 160px;
     }
     
     .prize-name {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .prize-price {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+    
+    .prize-buy-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
     }
     
     .bottom-image {
@@ -938,12 +959,32 @@ a[href^="tel"] {
 
 @media (max-width: 480px) {
     .prizes-grid {
-        grid-template-columns: 1fr !important;
-        gap: 12px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px;
+        padding: 0 5px;
+    }
+    
+    .prize-card {
+        padding: 12px;
     }
     
     .prize-image {
-        height: 200px;
+        height: 140px;
+    }
+    
+    .prize-name {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+    
+    .prize-price {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    .prize-buy-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
     }
     
     .bottom-image {
@@ -979,113 +1020,14 @@ a[href^="tel"] {
     }
 }
 
-
-/* ASCENSEUR POUR LES TICKETS DANS LE FORMULAIRE */
-.tickets-container {
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 20px;
-    background: #f8f9fa;
-    max-height: 400px; /* Hauteur fixe pour déclencher l'ascenseur */
-    overflow-y: auto; /* Ascenseur vertical */
-    position: relative;
-}
-
-/* Style personnalisé pour l'ascenseur */
-.tickets-container::-webkit-scrollbar {
-    width: 8px;
-}
-
-.tickets-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.tickets-container::-webkit-scrollbar-thumb {
-    background: #667eea;
-    border-radius: 10px;
-}
-
-.tickets-container::-webkit-scrollbar-thumb:hover {
-    background: #5a6fd8;
-}
-
-/* Pour Firefox */
-.tickets-container {
-    scrollbar-width: thin;
-    scrollbar-color: #667eea #f1f1f1;
-}
-
-/* AFFICHAGE 2 COLONNES POUR LES PRIMES SUR PETITS ÉCRANS */
-@media (max-width: 768px) {
-    .prizes-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px;
-        padding: 0 10px;
-    }
-    
-    .prize-card {
-        padding: 15px;
-    }
-    
-    .prize-image {
-        height: 160px; /* Légèrement réduit pour mieux s'adapter */
-    }
-    
-    .prize-name {
-        font-size: 1.1rem;
-    }
-    
-    .prize-price {
-        font-size: 1rem;
-    }
-    
-    .prize-buy-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-}
-
-/* Pour les très petits écrans, garder 2 colonnes mais ajuster */
-@media (max-width: 480px) {
-    .prizes-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px;
-        padding: 0 5px;
-    }
-    
-    .prize-card {
-        padding: 12px;
-    }
-    
-    .prize-image {
-        height: 140px;
-    }
-    
-    .prize-name {
-        font-size: 1rem;
-        margin-bottom: 8px;
-    }
-    
-    .prize-price {
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-    }
-    
-    .prize-buy-btn {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-    }
-}
-
 /* Pour les écrans extrêmement petits (moins de 360px) */
 @media (max-width: 360px) {
     .prizes-grid {
-        grid-template-columns: 1fr !important; /* Retour à 1 colonne */
+        grid-template-columns: 1fr !important;
         gap: 12px;
     }
     
     .prize-image {
-        height: 180px; /* Plus grand sur très petits écrans */
+        height: 180px;
     }
 }
