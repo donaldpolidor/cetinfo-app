@@ -66,32 +66,39 @@ function updateSelectedTickets() {
         total += subtotal;
         
         const ticketDiv = document.createElement('div');
-        ticketDiv.className = 'selected-ticket-item';
+        ticketDiv.className = 'selected-ticket-item new-ticket';
         ticketDiv.innerHTML = `
             <div class="ticket-info">
                 <span class="ticket-name">${ticket}</span>
-                <span class="ticket-price">${price.toLocaleString()} Gdes</span>
+                <span class="ticket-price">${price.toLocaleString()} Gdes × ${quantity}</span>
             </div>
             <div class="selected-ticket-quantity">
-                <button type="button" class="selected-quantity-btn minus">-</button>
+                <button type="button" class="selected-quantity-btn minus" data-ticket="${ticket}">-</button>
                 <span class="quantity-value">${quantity}</span>
-                <button type="button" class="selected-quantity-btn plus">+</button>
+                <button type="button" class="selected-quantity-btn plus" data-ticket="${ticket}">+</button>
             </div>
             <div class="ticket-subtotal">${subtotal.toLocaleString()} Gdes</div>
         `;
         ticketsListDiv.appendChild(ticketDiv);
         
-        // Ajouter les écouteurs d'événements pour les boutons de quantité
-        const minusBtn = ticketDiv.querySelector('.minus');
-        const plusBtn = ticketDiv.querySelector('.plus');
-        
-        minusBtn.addEventListener('click', () => changeQuantity(ticket, -1));
-        plusBtn.addEventListener('click', () => changeQuantity(ticket, 1));
+        // Retirer l'animation après l'affichage
+        setTimeout(() => {
+            ticketDiv.classList.remove('new-ticket');
+        }, 600);
         
         ticketsSummary.push(`${ticket} (${quantity} × ${price.toLocaleString()} Gdes)`);
     });
     
-    totalAmountDiv.textContent = `💰 Total: ${total.toLocaleString()} Gdes`;
+    totalAmountDiv.innerHTML = `<span>${total.toLocaleString()} Gdes</span>`;
+    
+    // Ajouter les écouteurs d'événements pour les boutons de quantité
+    document.querySelectorAll('.selected-quantity-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const ticketName = this.dataset.ticket;
+            const isPlus = this.classList.contains('plus');
+            changeQuantity(ticketName, isPlus ? 1 : -1);
+        });
+    });
     
     return {
         tickets: ticketsSummary,
@@ -256,3 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     });
 });
+
+// Empêcher le zoom sur les inputs sur iOS
+document.addEventListener('touchstart', function() {}, { passive: true });

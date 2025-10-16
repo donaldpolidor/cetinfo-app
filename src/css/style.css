@@ -11,6 +11,13 @@ body {
     color: #333;
 }
 
+/* Empêcher Safari de formater les numéros en liens */
+a[href^="tel"] {
+    color: inherit !important;
+    text-decoration: none !important;
+    cursor: default !important;
+}
+
 .header {
     background: white;
     padding: 20px 0;
@@ -406,11 +413,13 @@ body {
 .bottom-image {
     width: 100%;
     height: 350px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 15px;
     cursor: pointer;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     transition: transform 0.3s ease;
+    background-color: #f8f9fa;
+    padding: 5px;
 }
 
 .bottom-image:hover {
@@ -434,6 +443,411 @@ body {
     }
 }
 
+/* STYLES POUR LE FORMULAIRE D'ACHAT */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.form-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.payment-info {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border-left: 5px solid #667eea;
+}
+
+.payment-info h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.payment-info ol {
+    text-align: left;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.payment-info li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.payment-numbers {
+    background: #667eea;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Styles pour les tickets sélectionnables */
+.tickets-container {
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.tickets-checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.ticket-option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ticket-option:hover {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.ticket-option.selected {
+    border-color: #667eea;
+    background: #e8f0ff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.ticket-checkbox {
+    display: none;
+}
+
+.ticket-checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-right: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.ticket-checkbox:checked + .ticket-checkbox-custom {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.ticket-checkbox:checked + .ticket-checkbox-custom::after {
+    content: '✓';
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ticket-label {
+    flex: 1;
+    cursor: pointer;
+}
+
+.ticket-name {
+    display: block;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.ticket-price {
+    display: block;
+    color: #f11b1b;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* STYLES AMÉLIORÉS POUR LES TICKETS SÉLECTIONNÉS */
+.selected-tickets {
+    background: linear-gradient(135deg, #f8f9ff, #e8f4ff);
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid #667eea;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: slideInUp 0.5s ease-out;
+}
+
+.selected-tickets::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.selected-tickets h4 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.selected-tickets h4::before {
+    content: '🎫';
+    font-size: 1.4rem;
+}
+
+#ticketsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.selected-ticket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    animation: slideInUp 0.3s ease-out;
+}
+
+.selected-ticket-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
+}
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    text-align: left;
+}
+
+.ticket-name {
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+}
+
+.ticket-price {
+    color: #f11b1b;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.selected-ticket-quantity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 20px;
+}
+
+.selected-quantity-btn {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.selected-quantity-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.selected-quantity-btn:active {
+    transform: scale(0.95);
+}
+
+.selected-quantity-btn.minus {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+}
+
+.selected-quantity-btn.plus {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.quantity-value {
+    min-width: 40px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    font-size: 1.2rem;
+    padding: 0 8px;
+}
+
+.ticket-subtotal {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1rem;
+    min-width: 100px;
+    text-align: right;
+}
+
+#totalAmount {
+    font-weight: bold;
+    color: #f11b1b;
+    margin-top: 20px;
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    border: 2px dashed #f11b1b;
+    position: relative;
+}
+
+#totalAmount::before {
+    content: '💰 Total à payer:';
+    display: block;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+/* Style pour le texte d'instruction */
+.tickets-instruction {
+    color: #666;
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    font-style: italic;
+}
+
+/* Animations */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+    }
+}
+
+.new-ticket {
+    animation: pulse 0.6s ease-out;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.back-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.back-btn:hover {
+    background: #5a6268;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .hero-title {
@@ -449,17 +863,67 @@ body {
         padding: 25px 15px;
     }
     
+    /* 2 colonnes pour les petits écrans */
     .prizes-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .prize-card {
+        padding: 15px;
+    }
+    
+    .prize-image {
+        height: 180px;
+    }
+    
+    .prize-name {
+        font-size: 1.2rem;
+    }
+    
+    .prize-price {
+        font-size: 1.1rem;
     }
     
     .bottom-image {
         height: 280px;
+        object-fit: contain;
     }
     
     .bottom-image-item {
         width: 220px;
+    }
+    
+    .form-container {
+        padding: 25px;
+        margin: 15px;
+    }
+    
+    .tickets-checkbox-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .selected-ticket-item {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .selected-ticket-quantity {
+        order: 1;
+        margin: 0;
+    }
+    
+    .ticket-info {
+        order: 2;
+        text-align: center;
+    }
+    
+    .ticket-subtotal {
+        order: 3;
+        text-align: center;
     }
     
     @keyframes defilementBande {
@@ -474,15 +938,35 @@ body {
 
 @media (max-width: 480px) {
     .prizes-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+    
+    .prize-image {
+        height: 200px;
     }
     
     .bottom-image {
         height: 220px;
+        object-fit: contain;
     }
     
     .bottom-image-item {
         width: 180px;
+    }
+    
+    .selected-ticket-quantity {
+        gap: 8px;
+    }
+    
+    .selected-quantity-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    
+    .quantity-value {
+        font-size: 1.1rem;
     }
     
     @keyframes defilementBande {

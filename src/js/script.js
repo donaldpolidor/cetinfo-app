@@ -162,4 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = 'translateY(0)';
         });
     }
+    
+    // Empêcher le formatage des numéros sur iOS
+    document.querySelectorAll('input[type="tel"]').forEach(input => {
+        input.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+    });
 });
