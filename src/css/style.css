@@ -458,9 +458,9 @@ body {
     transform: scale(1.05);
 }
 
-/* SECTION AFFICHES DE FORMATION - Version compatible iOS */
-.formations-section {
-    margin: 60px 0;
+/* NOUVELLE SECTION : IMAGES EN BAS DE PAGE */
+.bottom-images-section {
+    margin: 60px 0 40px 0;
     text-align: center;
     background: white;
     border-radius: 20px;
@@ -469,49 +469,19 @@ body {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden;
 }
 
-.formations-section .section-title {
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 2rem;
-}
-
-.affiches-container {
-    overflow: hidden;
-    position: relative;
-    padding: 20px 0;
-    -webkit-overflow-scrolling: touch;
-}
-
-.affiches-scroll {
+.bottom-images-container {
     display: flex;
-    gap: 25px;
-    animation: scrollAffiches 40s linear infinite;
-    padding: 10px 0;
-    will-change: transform;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.affiches-scroll:hover {
-    animation-play-state: paused;
-}
-
-.affiche-item {
-    flex: 0 0 auto;
-    text-align: center;
-    transition: transform 0.3s ease;
-    min-width: 250px;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.affiche-item:hover {
-    transform: translateY(-5px);
-}
-
-.affiche-image {
-    width: 100%;
-    height: 350px;
+.bottom-image {
+    width: 300px;
+    height: 300px;
     object-fit: cover;
     border-radius: 15px;
     cursor: pointer;
@@ -526,103 +496,10 @@ body {
     -webkit-touch-callout: none;
 }
 
-.affiche-image:hover,
-.affiche-image:active {
+.bottom-image:hover {
     transform: scale(1.05);
     box-shadow: 0 12px 35px rgba(0,0,0,0.2);
     border-color: #667eea;
-}
-
-.affiche-title {
-    margin-top: 15px;
-    font-weight: 600;
-    color: #333;
-    font-size: 1.1rem;
-    /* COMPATIBILITÉ USER-SELECT */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* Animation de défilement avec duplication */
-@keyframes scrollAffiches {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-250px * 5 - 25px * 5));
-    }
-}
-
-/* CORRECTIONS SPÉCIFIQUES POUR iOS - SANS AFFECTER ANDROID */
-@supports (-webkit-touch-callout: none) {
-    .affiche-image {
-        height: 320px !important;
-        object-fit: cover;
-    }
-    
-    .affiche-item {
-        min-width: 230px;
-    }
-    
-    /* Ajustements responsives pour iOS */
-    @media (max-width: 768px) {
-        .affiche-image {
-            height: 280px !important;
-        }
-        
-        .affiche-item {
-            min-width: 200px;
-        }
-        
-        @keyframes scrollAffiches {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-200px * 5 - 25px * 5));
-            }
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .affiche-image {
-            height: 240px !important;
-        }
-        
-        .affiche-item {
-            min-width: 170px;
-        }
-        
-        @keyframes scrollAffiches {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-170px * 5 - 25px * 5));
-            }
-        }
-    }
-    
-    @media (max-width: 360px) {
-        .affiche-image {
-            height: 220px !important;
-        }
-        
-        .affiche-item {
-            min-width: 150px;
-        }
-        
-        @keyframes scrollAffiches {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-150px * 5 - 25px * 5));
-            }
-        }
-    }
 }
 
 /* STYLES POUR LA PAGE ACHAT */
@@ -1191,32 +1068,19 @@ body {
         font-size: 1rem;
     }
     
-    /* Media queries pour les affiches sur mobile */
-    .formations-section {
+    /* Media queries pour les images en bas */
+    .bottom-images-section {
         margin: 40px 15px;
         padding: 30px 15px;
     }
     
-    .formations-section .section-title {
-        font-size: 1.6rem;
-        margin-bottom: 20px;
+    .bottom-images-container {
+        gap: 15px;
     }
     
-    .affiches-scroll {
-        gap: 20px;
-        animation: scrollAffiches 35s linear infinite;
-    }
-    
-    .affiche-item {
-        min-width: 200px;
-    }
-    
-    .affiche-image {
-        height: 250px;
-    }
-    
-    .affiche-title {
-        font-size: 1rem;
+    .bottom-image {
+        width: 150px;
+        height: 200px;
     }
 }
 
@@ -1346,85 +1210,77 @@ body {
         font-size: 0.9rem;
     }
     
-    /* Media queries pour les affiches sur très petits écrans */
-    .formations-section {
-        margin: 30px 10px;
-        padding: 20px 10px;
-    }
-    
-    .formations-section .section-title {
-        font-size: 1.4rem;
-    }
-    
-    .affiches-scroll {
-        gap: 15px;
-        animation: scrollAffiches 30s linear infinite;
-    }
-    
-    .affiche-item {
-        min-width: 160px;
-    }
-    
-    .affiche-image {
-        height: 200px;
-        border-radius: 10px;
-    }
-    
-    .affiche-title {
-        font-size: 0.9rem;
-        margin-top: 10px;
-    }
-    
-    .selected-quantity-btn {
-        width: 28px;
-        height: 28px;
-        font-size: 14px;
-    }
-    
-    .quantity-value {
-        min-width: 25px;
-        font-size: 0.9rem;
-    }
+   /* Media queries pour les images en bas sur très petits écrans */
+.bottom-images-section {
+    margin: 30px 10px;
+    padding: 20px 10px;
+}
+
+.bottom-images-container {
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bottom-image {
+    width: calc(20% - 10px);
+    max-width: 120px;
+    height: auto;
+    aspect-ratio: 3/4;
+    object-fit: contain;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background: #f8f9fa;
+    padding: 5px;
+}
+
+.bottom-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    border-color: #667eea;
 }
 
 @media (max-width: 360px) {
-    .prizes-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
+    .bottom-images-section {
+        margin: 20px 8px;
+        padding: 15px 8px;
     }
     
-    .hero-section {
-        padding: 20px 15px;
+    .bottom-images-container {
+        gap: 8px;
     }
     
-    .affiche-item {
-        min-width: 140px;
-    }
-    
-    .affiche-image {
-        height: 180px;
+    .bottom-image {
+        width: calc(20% - 8px);
+        max-width: 100px;
+        border-radius: 8px;
     }
 }
 
-/* CORRECTION SPÉCIFIQUE POUR iOS */
+/* CORRECTION SPÉCIFIQUE POUR iOS - Images en bas */
 @supports (-webkit-touch-callout: none) {
-    .main-container {
-        margin-top: 150px;
-    }
-    
-    @media (max-width: 768px) {
-        .main-container {
-            margin-top: 140px;
-        }
+    .bottom-image {
+        object-fit: contain;
+        background: #f8f9fa;
     }
     
     @media (max-width: 480px) {
-        .main-container {
-            margin-top: 135px;
+        .bottom-image {
+            width: calc(33.333% - 10px);
+            max-width: 110px;
         }
     }
     
-    .form-group input {
-        font-size: 16px;
+    @media (max-width: 360px) {
+        .bottom-image {
+            width: calc(33.333% - 8px);
+            max-width: 95px;
+        }
     }
+}
 }
