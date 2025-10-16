@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetinfo - Achat de Tickets en Ligne</title>
     <link rel="stylesheet" href="css/style.css">
@@ -10,7 +9,7 @@
 <body>
     <header class="header">
         <div class="logo-container">
-            <img src="images/logos/logo-cetinfo.png" alt="Logo Cetinfo" class="logo" onclick="retourAccueil()" style="cursor: pointer;">
+            <img src="images/logos/logo-cetinfo.png" alt="Logo Cetinfo" class="logo" onclick="retourAccueil()">
             <h3>Tout est une affaire de technologie !</h3>       
         </div>
     </header>
@@ -19,9 +18,9 @@
         <section class="hero-section">
             <h1 class="hero-title">GRAND TIRAGE AU SORT CETINFO 2025!</h1>
             <p class="hero-subtitle">
-                Chaque année, le CETINFO organise son tirage spécial pour soutenir la jeunesse haïtienne dans son Développement Personnel et Professionnel.
-                Cet événement s'inscrit dans notre engagement social à offrir plus d'opportunités aux jeunes passionnés de Technologie et d'Entrepreneuriat.
-            </p>
+Chaque année, le CETINFO organise son tirage spécial pour soutenir la jeunesse haïtienne dans son Développement Personnel et Professionnel.
+                Cet événement s'inscrit dans notre engagement social à offrir plus d'opportunités aux jeunes 
+                passionnés de Technologie et d'Entrepreneuriat. </p>
             <h1 class="ticket-count">🎫Tickets restants : 100</h1>
             <button class="buy-ticket-btn" onclick="acheterTicket()">
                 Acheter un Ticket
@@ -31,9 +30,8 @@
             <div class="video-section">
                 <h3 class="video-title">Découvrez notre vidéo de promotion</h3>
                 <div class="video-container">
-                    <video controls class="promo-video" id="promoVideo" preload="metadata">
-                        <source src="/video/videopub.mp4" type="video/mp4">
-                        <source src="/video/videopub.webm" type="video/webm">
+                    <video controls class="promo-video" id="promoVideo">
+                        <source src="video/videopub.mp4" type="video/mp4">
                         Votre navigateur ne supporte pas la lecture de vidéos.
                     </video>
                 </div>
@@ -51,14 +49,12 @@
                         🔗 Partager
                     </button>
                 </div>
-                <p class="video-note">Cliquez sur Lecture pour démarrer la vidéo</p>
             </div>
         </section>
 
         <section class="prizes-section">
-            <h2 class="section-title">Gros lots à gagner et Prix des tickets</h2>
+            <h2 class="section-title">Gros lots à gagner</h2>
             <div class="prizes-grid">
-                <!-- Vos cartes de prix existantes -->
                 <div class="prize-card">
                     <img src="images/prime/moto.jpg" alt="Motocyclette" class="prize-image" onclick="previewImage('images/prime/moto.jpg', 'Motocyclette')">
                     <h3 class="prize-name">Motocyclette</h3>
@@ -119,42 +115,60 @@
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
                 <h3 class="feature-title">Gagnant Garanti</h3>
-                <p class="feature-description">De nombreux lots à gagner à chaque tirage et beaucoup de primes de consolation !</p>
+                <p class="feature-description">De nombreux lots à gagner à chaque tirage !</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
                 <h3 class="feature-title">Rapide & Simple</h3>
-                <p class="feature-description">Achat de ticket en quelques clics seulement</p>
+                <p class="feature-description">Achat de ticket en quelques clics</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
                 <h3 class="feature-title">Paiement Sécurisé</h3>
-                <p class="feature-description">Effectuez vos transactions via Mon Cash ou NatCash en toute sécurité</p>
+                <p class="feature-description">Transactions via Mon Cash ou NatCash</p>
                 <div class="payment-icons">
-                    <img src="images/moncash.jpg" alt="Mon Cash" class="icon" title="Mon Cash">
-                    <img src="images/natcash.jpg" alt="NatCash" class="icon" title="NatCash">
+                    <img src="images/moncash.jpg" alt="Mon Cash" class="icon">
+                    <img src="images/natcash.jpg" alt="NatCash" class="icon">
                 </div>
             </div>
         </section>
 
-        <!-- NOUVELLE SECTION : AFFICHES EN BAS DE PAGE -->
+        <!-- BANDE PASSANTE -->
         <section class="bottom-images-section">
+            <h2 class="section-title" style="color: #333; margin-bottom: 30px;">📚 Formations Disponibles</h2>
             <div class="bottom-images-container">
-                <img src="images/affiche1.jpg" alt="Affiche 1" class="bottom-image" onclick="previewImage('images/affiche1.jpg', 'Formation Sur La Gestion de Stock')">
-                <img src="images/affiche2.jpg" alt="Affiche 2" class="bottom-image" onclick="previewImage('images/affiche2.jpg', 'Niveau de Certification Aptitudes Professionnelles')">
-                <img src="images/affiche3.jpg" alt="Affiche 3" class="bottom-image" onclick="previewImage('images/affiche3.jpg', 'CONTACT & ADRESSE')">
-                <img src="images/affiche4.jpg" alt="Affiche 4" class="bottom-image" onclick="previewImage('images/affiche4.jpg','Département Informatique')">
-                <img src="images/affiche5.jpg" alt="Affiche 5" class="bottom-image" onclick="previewImage('images/affiche5.jpg', 'Département Commercial')">
+                <div class="bottom-images-scroll">
+                    <div class="bottom-image-item">
+                        <img src="images/affiche1.jpg" alt="Formation 1" class="bottom-image" onclick="previewImage('images/affiche1.jpg', 'Séminaires de Formation')">
+                        <p class="bottom-image-title">SÉMINAIRES</p>
+                    </div>
+                    <div class="bottom-image-item">
+                        <img src="images/affiche2.jpg" alt="Formation 2" class="bottom-image" onclick="previewImage('images/affiche2.jpg', 'Formations Modulaires')">
+                        <p class="bottom-image-title">MODULAIRES</p>
+                    </div>
+                    <div class="bottom-image-item">
+                        <img src="images/affiche3.jpg" alt="Formation 3" class="bottom-image" onclick="previewImage('images/affiche3.jpg', 'Contact & Adresse')">
+                        <p class="bottom-image-title">CONTACT</p>
+                    </div>
+                    <div class="bottom-image-item">
+                        <img src="images/affiche4.jpg" alt="Formation 4" class="bottom-image" onclick="previewImage('images/affiche4.jpg', 'Formations Régulières')">
+                        <p class="bottom-image-title">RÉGULIÈRES</p>
+                    </div>
+                    <div class="bottom-image-item">
+                        <img src="images/affiche5.jpg" alt="Formation 5" class="bottom-image" onclick="previewImage('images/affiche5.jpg', 'Formations Régulières')">
+                        <p class="bottom-image-title">RÉGULIÈRES</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <p>&copy; 2025 Cetinfo - Tous droits réservés</p>
-        <p>🌎 info@cetinfo.com  |  📞 <span style="color: white; text-decoration: none;">+(509) 3724-5036 / 3801-7951</span></p>
-        <p>🗺 130, Ave. Martin Luther King (Pont Morin)📍</p>
+        <p>🌎 info@cetinfo.com | 📞 +(509) 3724-5036 / 3801-7951</p>
+        <p>🗺 130, Ave. Martin Luther King (Pont Morin)</p>
     </footer>
 
     <div id="imagePreviewModal" class="modal">
