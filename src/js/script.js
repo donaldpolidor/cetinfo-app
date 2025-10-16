@@ -174,22 +174,73 @@ function gererCompteurTickets() {
     console.log(`Tickets calculés: ${ticketsRestants} (jours écoulés depuis 11/10/2025: ${joursEcoules})`);
 }
 
-// FONCTION POUR INITIALISER LE DÉFILEMENT DES AFFICHES
-function initialiserDefilementAffiches() {
-    const affichesScroll = document.querySelector('.affiches-scroll');
-    if (!affichesScroll) return;
+// FONCTION POUR INITIALISER LE DÉFILEMENT EN BANDE PASSANTE
+function initialiserDefilementBandePassante() {
+    const bandeContainer = document.querySelector('.bottom-images-container');
+    const bandeScroll = document.querySelector('.bottom-images-scroll');
     
-    // Dupliquer les éléments d'affiches pour un effet continu sans espace
-    const affichesItems = affichesScroll.querySelectorAll('.affiche-item');
-    const nombreAffiches = affichesItems.length;
+    if (!bandeContainer || !bandeScroll) {
+        console.log('Éléments de bande passante non trouvés');
+        return;
+    }
     
-    // Cloner chaque affiche et l'ajouter à la fin
-    affichesItems.forEach(item => {
+    // Dupliquer le contenu pour un effet infini
+    const items = bandeScroll.querySelectorAll('.bottom-image-item');
+    const nombreItems = items.length;
+    
+    if (nombreItems === 0) {
+        console.log('Aucun élément à défiler');
+        return;
+    }
+    
+    // Cloner chaque élément et l'ajouter à la fin
+    items.forEach(item => {
         const clone = item.cloneNode(true);
-        affichesScroll.appendChild(clone);
+        bandeScroll.appendChild(clone);
     });
     
-    console.log(`Défilement des affiches initialisé: ${nombreAffiches} affiches dupliquées`);
+    console.log(`Bande passante initialisée: ${nombreItems} éléments dupliqués`);
+    
+    // Démarrer l'animation
+    bandeScroll.style.animation = 'scrollAffiches 30s linear infinite';
+    
+    // Gérer le survol pour arrêter/reprendre
+    bandeContainer.addEventListener('mouseenter', () => {
+        bandeScroll.style.animationPlayState = 'paused';
+    });
+    
+    bandeContainer.addEventListener('mouseleave', () => {
+        bandeScroll.style.animationPlayState = 'running';
+    });
+    
+    // Pour mobile
+    bandeContainer.addEventListener('touchstart', () => {
+        bandeScroll.style.animationPlayState = 'paused';
+    });
+    
+    bandeContainer.addEventListener('touchend', () => {
+        setTimeout(() => {
+            bandeScroll.style.animationPlayState = 'running';
+        }, 2000);
+    });
+}
+
+// FORCER LE REDÉMARRAGE DE L'ANIMATION
+function forcerRedemarrageAnimation() {
+    const bandeScroll = document.querySelector('.bottom-images-scroll');
+    if (bandeScroll) {
+        // Arrêter l'animation
+        bandeScroll.style.animation = 'none';
+        
+        // Forcer le reflow
+        void bandeScroll.offsetWidth;
+        
+        // Redémarrer l'animation
+        bandeScroll.style.animation = 'scrollAffiches 30s linear infinite';
+        bandeScroll.style.animationPlayState = 'running';
+        
+        console.log('Animation de la bande passante redémarrée');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -198,14 +249,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialiser le compteur de tickets
     gererCompteurTickets();
     
-    // Initialiser le défilement des affiches
-    initialiserDefilementAffiches();
+    // Initialiser la bande passante des affiches
+    initialiserDefilementBandePassante();
     
     // Initialiser la vidéo après le chargement complet
     setTimeout(() => {
         initialiserVideo();
     }, 1000);
     
+    // Redémarrer l'animation après un délai pour s'assurer qu'elle fonctionne
+    setTimeout(forcerRedemarrageAnimation, 2000);
+    
+    // Effets d'animation au chargement
     const buyButton = document.querySelector('.buy-ticket-btn');
     if (buyButton) {
         buyButton.addEventListener('mouseenter', function() {
@@ -236,6 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Animations d'apparition des sections
     const featureCards = document.querySelectorAll('.feature-card');
     featureCards.forEach((card, index) => {
         card.style.opacity = '0';
@@ -279,4 +335,48 @@ document.addEventListener('DOMContentLoaded', function() {
             videoSection.style.transform = 'translateY(0)';
         }, 600);
     }
+    
+    // Animation pour la section des affiches
+    const bottomImagesSection = document.querySelector('.bottom-images-section');
+    if (bottomImagesSection) {
+        bottomImagesSection.style.opacity = '0';
+        bottomImagesSection.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            bottomImagesSection.style.transition = 'all 0.8s ease';
+            bottomImagesSection.style.opacity = '1';
+            bottomImagesSection.style.transform = 'translateY(0)';
+        }, 800);
+    }
+    
+    // Gestion du redimensionnement
+    window.addEventListener('resize', function() {
+        setTimeout(forcerRedemarrageAnimation, 100);
+    });
+    
+    // Gestion de la visibilité
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            setTimeout(forcerRedemarrageAnimation, 100);
+        }
+    });
 });
+
+// Fonction de débogage
+function debugBandePassante() {
+    const bandeScroll = document.querySelector('.bottom-images-scroll');
+    if (bandeScroll) {
+        const style = getComputedStyle(bandeScroll);
+        console.log('DEBUG BANDE PASSANTE:', {
+            element: bandeScroll,
+            animation: style.animation,
+            animationPlayState: style.animationPlayState,
+            childrenCount: bandeScroll.children.length,
+            width: bandeScroll.scrollWidth,
+            visibleWidth: bandeScroll.clientWidth
+        });
+    }
+}
+
+// Exposer les fonctions globalement
+window.debugBandePassante = debugBandePassante;
+window.forcerRedemarrageAnimation = forcerRedemarrageAnimation;
