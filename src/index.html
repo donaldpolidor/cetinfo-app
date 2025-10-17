@@ -58,7 +58,7 @@
             <h2 class="section-title">Gros lots à gagner et Prix des tickets</h2>
             <div class="prizes-grid">
                 <div class="prize-card">
-                    <img src="images/prime/moto.jpg" alt="Motocyclette" class="prize-image" onclick="previewImage('images/prime/moto.jpg', 'Motocyclette')">
+                    <img src="images/prime/boxer.png" alt="Motocyclette" class="prize-image" onclick="previewImage('images/prime/boxer.png', 'Motocyclette')">
                     <h3 class="prize-name">Motocyclette</h3>
                     <p class="prize-price">Prix Ticket : 1,500 Gdes</p>
                     <button class="prize-buy-btn" onclick="acheterTicket('Motocyclette')">
@@ -103,7 +103,7 @@
                 </div>
                 
                 <div class="prize-card">
-                    <img src="images/prime/phone.jpg" alt="Téléphone" class="prize-image" onclick="previewImage('images/prime/phone.jpg', 'Téléphone')">
+                    <img src="images/prime/samsung-galaxy.jpg" alt="Téléphone" class="prize-image" onclick="previewImage('images/prime/samsung-galaxy.jpg', 'Téléphone')">
                     <h3 class="prize-name">Téléphone</h3>
                     <p class="prize-price">Prix Ticket : 500 Gdes</p>
                     <button class="prize-buy-btn" onclick="acheterTicket('Téléphone')">
@@ -112,6 +112,22 @@
                 </div>
             </div>
         </section>
+
+        <section class="video2024-section">
+    <h2 class="video-title">🎥 Retour sur l'Édition 2024</h2>
+    <div class="video-container">
+        <video controls class="promo-video" id="video2024" preload="metadata" playsinline>
+            <source src="video/video2024.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
+        <div class="video-controls">
+            <button class="video-control-btn" onclick="document.getElementById('video2024').play()">▶️ Lecture</button>
+            <button class="video-control-btn" onclick="document.getElementById('video2024').pause()">⏸ Pause</button>
+            <button class="download-btn" onclick="window.open('video/video2024.mp4')">📥 Télécharger</button>
+            <button class="share-btn" onclick="partagerVideo()">🔗 Partager</button>
+        </div>
+    </div>
+</section>
 
         <section class="features">
             <div class="feature-card">

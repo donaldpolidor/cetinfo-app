@@ -133,7 +133,7 @@ NOUVEL ACHAT DE TICKET(S) CETINFO 2025
 • Téléphone: ${formData.telephone}
 • Email: ${formData.email}
 
-🎫 TICKETS ACHETÉS (${formData.detailedTickets.reduce((sum, t) => sum + t.quantity, 0)} ticket(s)):
+TICKETS ACHETÉS (${formData.detailedTickets.reduce((sum, t) => sum + t.quantity, 0)} ticket(s)):
 • ${ticketsList}
 
 💰 MONTANT TOTAL: ${formData.total.toLocaleString()} Gdes

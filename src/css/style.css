@@ -182,6 +182,28 @@ a[href^="tel"] {
     background: linear-gradient(135deg, #ff6b6b, #ee5a24);
 }
 
+
+/*video 2024*/
+.video2024-section {
+    margin-top: 60px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video2024-section .video-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

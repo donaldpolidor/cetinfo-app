@@ -102,11 +102,11 @@ function gererCompteurTickets() {
     if (!ticketCountElement) return;
     
     const aujourdHui = new Date();
-    const dateDebut = new Date('2025-10-11');
+    const dateDebut = new Date('2025-10-14');
     const dateLimite = new Date('2025-11-23');
     
     if (aujourdHui < dateDebut) {
-        ticketCountElement.textContent = 'Tickets restants : 100';
+        ticketCountElement.textContent = 'Tickets restants : 200';
         return;
     }
     
@@ -117,14 +117,14 @@ function gererCompteurTickets() {
     
     const differenceTemps = aujourdHui - dateDebut;
     const joursEcoules = Math.floor(differenceTemps / (1000 * 60 * 60 * 24));
-    let ticketsRestants = 100 - (joursEcoules * 5);
+    let ticketsRestants = 200 - (joursEcoules * 5);
     
     if (ticketsRestants <= 0) {
-        ticketsRestants = 100 - (Math.abs(ticketsRestants) % 100);
-        if (ticketsRestants === 0) ticketsRestants = 100;
+        ticketsRestants = 200 - (Math.abs(ticketsRestants) % 100);
+        if (ticketsRestants === 0) ticketsRestants = 200;
     }
     
-    ticketsRestants = Math.max(1, Math.min(100, ticketsRestants));
+    ticketsRestants = Math.max(1, Math.min(200, ticketsRestants));
     ticketCountElement.textContent = `Tickets restants : ${ticketsRestants}`;
 }
 
