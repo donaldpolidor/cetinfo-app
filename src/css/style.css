@@ -115,13 +115,13 @@ a[href^="tel"] {
     box-shadow: 0 8px 20px rgba(238, 90, 36, 0.6);
 }
 
-.video-section {
+/*.video-section {
     margin-top: 50px;
     padding: 30px;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 15px;
     border: 2px solid #e0e0e0;
-}
+}*/
 
 .video-title {
     font-size: 1.5rem;
@@ -129,15 +129,16 @@ a[href^="tel"] {
     margin-bottom: 25px;
     text-align: center;
     font-weight: bold;
+    margin-top:25px
 }
 
-.video-container {
+/*.video-container {
     max-width: 800px;
     margin: 0 auto 20px auto;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
+}*/
 
 .promo-video {
     width: 100%;
