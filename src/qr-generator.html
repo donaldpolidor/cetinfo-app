@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Cetinfo</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            margin: 0; 
+        }
+        .container { 
+            max-width: 400px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        .qr-code { 
+            margin: 20px 0; 
+            padding: 20px; 
+            border: 2px solid #333; 
+            display: inline-block; 
+        }
+        .instructions { 
+            text-align: left; 
+            margin: 20px 0; 
+            padding: 15px; 
+            background: #f5f5f5; 
+            border-radius: 5px; 
+        }
+        button { 
+            padding: 10px 20px; 
+            margin: 5px; 
+            cursor: pointer; 
+        }
+        @media print {
+            button { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Cetinfo Tirage.app</h1>
+        <p>Scannez pour ouvrir l'application</p>
+        
+        <div class="qr-code">
+            <!-- QR Code généré via API -->
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cetinfo.netlify.app/" 
+                 alt="QR Code Cetinfo">
+        </div>
+        
+        
+        <button onclick="window.print()">🖨️ Imprimer</button>
+        <button onclick="window.location.reload()">🔄 Recharger</button>
+    </div>
+</body>
+</html>
