@@ -152,11 +152,11 @@ Cet email a été envoyé automatiquement depuis le formulaire d'achat CETINFO.
     
     if (isMobile) {
         // MOBILE : Utiliser mailto pour lancer l'app Gmail automatiquement
-        const mailtoLink = `mailto:donaldpolidor30@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const mailtoLink = `mailto:cetinfo.haiti@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailtoLink;
     } else {
         // DESKTOP : Ouvrir Gmail dans un nouvel onglet
-        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=donaldpolidor30@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=cetinfo.haiti@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         const nouvelleFenetre = window.open(gmailLink, '_blank');
         
         // Si popup bloquée, ouvrir dans le même onglet
