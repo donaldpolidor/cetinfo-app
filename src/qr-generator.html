@@ -3,56 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Cetinfo</title>
+    <title>QR Code Cetinfo - Formation pour tous</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body { 
-            font-family: Arial, sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             text-align: center; 
             padding: 20px; 
             margin: 0; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
+        
         .container { 
-            max-width: 400px; 
+            max-width: 500px; 
+            width: 90%;
             margin: 0 auto; 
-            padding: 20px; 
+            padding: 30px; 
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        .qr-code { 
-            margin: 20px 0; 
-            padding: 20px; 
-            border: 2px solid #333; 
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+        
+        .qr-container { 
+            margin: 25px 0; 
+            padding: 25px; 
+            border: 2px dashed #3498db; 
+            border-radius: 10px;
             display: inline-block; 
+            background-color: #f8fafc;
         }
+        
         .instructions { 
             text-align: left; 
-            margin: 20px 0; 
-            padding: 15px; 
-            background: #f5f5f5; 
-            border-radius: 5px; 
+            margin: 25px 0; 
+            padding: 20px; 
+            background: #f8f9fa; 
+            border-radius: 10px; 
+            border-left: 4px solid #3498db;
         }
+        
+        .instructions h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
         button { 
-            padding: 10px 20px; 
-            margin: 5px; 
+            padding: 12px 25px; 
+            border: none;
+            border-radius: 6px;
             cursor: pointer; 
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+        
+        .print-btn {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .print-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .reload-btn {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .reload-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        .url-display {
+            margin: 15px 0;
+            padding: 12px;
+            background-color: #f1f8ff;
+            border-radius: 6px;
+            font-family: monospace;
+            word-break: break-all;
+            color: #2c3e50;
+            border: 1px solid #d1e3ff;
+        }
+        
         @media print {
             button { display: none; }
+            .instructions { display: none; }
+            .subtitle { display: none; }
+            .url-display { display: none; }
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>QR Code Cetinfo Tirage.app</h1>
-        <p>Scannez pour ouvrir l'application</p>
+        <h1>QR Code Cetinfo</h1>
+        <p class="subtitle">Formation numérique pour tous</p>
         
-        <div class="qr-code">
+        <div class="qr-container">
             <!-- QR Code généré via API -->
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cetinfo.netlify.app/" 
-                 alt="QR Code Cetinfo">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cetinfo-kado-pou-tout-moun-fomasyon.netlify.app/" 
+                 alt="QR Code Cetinfo Formation">
         </div>
         
+        <div class="url-display">
+            https://cetinfo-kado-pou-tout-moun-fomasyon.netlify.app/
+        </div>
         
-        <button onclick="window.print()">🖨️ Imprimer</button>
-        <button onclick="window.location.reload()">🔄 Recharger</button>
+        <div class="instructions">
+            <h3>Comment utiliser ce QR Code :</h3>
+            <ol>
+                <li>Imprimez cette page ou affichez-la sur un écran</li>
+                <li>Demandez aux utilisateurs de scanner le code avec leur smartphone</li>
+                <li>Ils seront redirigés directement vers l'application Cetinfo</li>
+                <li>Aucune installation supplémentaire n'est nécessaire</li>
+            </ol>
+        </div>
+        
+        <div class="button-group">
+            <button class="print-btn" onclick="window.print()">
+                <span>🖨️</span> Imprimer
+            </button>
+            <button class="reload-btn" onclick="window.location.reload()">
+                <span>🔄</span> Recharger
+            </button>
+        </div>
     </div>
 </body>
 </html>
