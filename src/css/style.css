@@ -69,6 +69,40 @@ a[href^="tel"] {
     font-weight: bold;
 }
 
+/* Styles pour l'image hero (affiche6.jpg) */
+.hero-image-container {
+    margin: 25px 0 30px 0;
+    text-align: center;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    object-fit: contain;
+}
+
+.hero-image:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive pour l'image hero */
+@media (max-width: 768px) {
+    .hero-image {
+        max-height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image {
+        max-height: 280px;
+    }
+}
+
 .hero-subtitle {
     font-size: 1.2rem;
     color: #666;
