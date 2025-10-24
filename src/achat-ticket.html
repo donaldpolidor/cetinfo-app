@@ -18,12 +18,12 @@
     <main class="main-container">
         <div class="form-container">
             <h1>Formulaire d'Achat de Ticket</h1>
-            
+
             <div class="payment-info">
                 <h3>📋 Instructions de Paiement</h3>
                 <ol>
                     <li>Sélectionnez le(s) ticket(s) que vous souhaitez acheter</li>
-                    <li>Effectuez le paiement via <strong>Mon Cash</strong> ou <strong>NatCash + Frais Dépôt</strong></li>
+                    <li>Effectuez le paiement via <strong>ZELLE</strong> ,<strong>Mon Cash</strong> ou <strong>NatCash + Frais Dépôt</strong></li>
                     <li>Conservez le <strong>ID Transaction</strong> reçu après paiement</li>
                     <li>Remplissez ce formulaire avec vos informations personnelles</li>
                     <li>Insérez le <strong>ID Transaction</strong> dans le champ prévu à cet effet</li>
@@ -31,13 +31,25 @@
                 </ol>
                 <p class="payment-numbers">
                     💰 Numéros de paiement :<br>
-                    <strong>Mon Cash: 3724-5036 | NatCash: 5595-1452</strong>
+                    <strong>ZELLE: +1 (239) 375-7471 | Mon Cash: +(509) 3724-5036 | NatCash: +(509) 5595-1452</strong>
                 </p>
             </div>
 
             <form id="achatForm">
                <div class="form-group">
-    <label style="display: block; margin-bottom: 12px; font-size: 1rem; font-weight: bold;">Sélectionnez vos tickets *</label>
+                <!-- Bouton bascule devise -->
+            <div class="currency-toggle-container">
+                <label class="currency-toggle">
+                    <input type="checkbox" id="currencyToggle">
+                    <span class="currency-slider">
+                        <span class="currency-text gourdes">Gourdes</span>
+                        <span class="currency-text usd">USD $</span>
+                    </span>
+                </label>
+            </div>
+    <label style="display: block; margin-bottom: 12px; font-size: 1rem; font-weight: bold;">
+        Sélectionnez vos tickets - Devise: <span id="currentCurrencyDisplay">Gourdes</span> *
+    </label>
     
     <div class="tickets-container">
         <div class="tickets-checkbox-group">

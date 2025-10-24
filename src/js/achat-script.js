@@ -8,8 +8,88 @@ let ticketQuantities = {
     'Téléphone': 0
 };
 
+// Taux de change
+const EXCHANGE_RATE = 60; // 1 USD = 60 Gourdes
+
+// État de la devise
+let currentCurrency = 'GOURDES'; // 'GOURDES' ou 'USD'
+
+// Prix en USD
+const ticketPricesUSD = {
+    'Motocyclette': 25,
+    'Laptop': 20,
+    'Freezer': 15,
+    'Smart TV': 15,
+    'Caméra': 15,
+    'Téléphone': 10
+};
+
+// Prix en Gourdes
+const ticketPricesGOURDES = {
+    'Motocyclette': 1500,
+    'Laptop': 1000,
+    'Freezer': 1000,
+    'Smart TV': 1000,
+    'Caméra': 750,
+    'Téléphone': 500
+};
+
 function retourAccueil() {
     window.location.href = 'index.html';
+}
+
+// Fonction pour basculer entre les devises
+function toggleCurrency() {
+    const toggle = document.getElementById('currencyToggle');
+    currentCurrency = toggle.checked ? 'USD' : 'GOURDES';
+    updateCurrencyDisplay();
+    updateTicketPrices();
+    updateSelectedTickets();
+}
+
+// Fonction pour mettre à jour l'affichage de la devise
+function updateCurrencyDisplay() {
+    const display = document.getElementById('currentCurrencyDisplay');
+    if (display) {
+        display.textContent = currentCurrency === 'USD' ? 'USD $' : 'Gourdes';
+    }
+}
+
+// Fonction pour mettre à jour les prix affichés
+function updateTicketPrices() {
+    const ticketOptions = document.querySelectorAll('.ticket-option');
+    
+    ticketOptions.forEach(option => {
+        const ticketName = option.dataset.ticket;
+        const priceElement = option.querySelector('.ticket-price');
+        const price = getTicketPrice(ticketName);
+        
+        if (currentCurrency === 'USD') {
+            priceElement.textContent = `$${price}`;
+            option.dataset.price = price;
+        } else {
+            priceElement.textContent = `${price.toLocaleString()} Gdes`;
+            option.dataset.price = price;
+        }
+    });
+}
+
+// Fonction pour obtenir le prix d'un ticket selon la devise
+function getTicketPrice(ticketName) {
+    if (currentCurrency === 'USD') {
+        return ticketPricesUSD[ticketName] || 0;
+    } else {
+        return ticketPricesGOURDES[ticketName] || 0;
+    }
+}
+
+// Fonction pour formater le prix
+function formatPrice(price) {
+    if (currentCurrency === 'USD') {
+        return `$${price}`;
+    } else {
+        return `${price.toLocaleString()} Gdes`;
+    }
 }
 
 // Fonction pour changer la quantité d'un ticket
@@ -70,14 +150,14 @@ function updateSelectedTickets() {
         ticketDiv.innerHTML = `
             <div class="ticket-info">
                 <span class="ticket-name">${ticket}</span>
-                <span class="ticket-price">${price.toLocaleString()} Gdes × ${quantity}</span>
+                <span class="ticket-price">${formatPrice(price)} × ${quantity}</span>
             </div>
             <div class="selected-ticket-quantity">
                 <button type="button" class="selected-quantity-btn minus" data-ticket="${ticket}">-</button>
                 <span class="quantity-value">${quantity}</span>
                 <button type="button" class="selected-quantity-btn plus" data-ticket="${ticket}">+</button>
             </div>
-            <div class="ticket-subtotal">${subtotal.toLocaleString()} Gdes</div>
+            <div class="ticket-subtotal">${formatPrice(subtotal)}</div>
         `;
         ticketsListDiv.appendChild(ticketDiv);
         
@@ -86,10 +166,10 @@ function updateSelectedTickets() {
             ticketDiv.classList.remove('new-ticket');
         }, 600);
         
-        ticketsSummary.push(`${ticket} (${quantity} × ${price.toLocaleString()} Gdes)`);
+        ticketsSummary.push(`${ticket} (${quantity} × ${formatPrice(price)})`);
     });
     
-    totalAmountDiv.innerHTML = `<span>${total.toLocaleString()} Gdes</span>`;
+    totalAmountDiv.innerHTML = `<span>${formatPrice(total)}</span>`;
     
     // Ajouter les écouteurs d'événements pour les boutons de quantité
     document.querySelectorAll('.selected-quantity-btn').forEach(button => {
@@ -103,25 +183,14 @@ function updateSelectedTickets() {
     return {
         tickets: ticketsSummary,
         total: total,
-        detailedTickets: selectedTickets
+        detailedTickets: selectedTickets,
+        currency: currentCurrency
     };
-}
-
-// Fonction pour obtenir le prix d'un ticket
-function getTicketPrice(ticketName) {
-    const prices = {
-        'Motocyclette': 1500,
-        'Laptop': 1000,
-        'Freezer': 1000,
-        'Smart TV': 1000,
-        'Caméra': 750,
-        'Téléphone': 500
-    };
-    return prices[ticketName] || 0;
 }
 
 function envoyerEmail(formData) {
     const ticketsList = formData.tickets.join('\n• ');
+    const currencySymbol = formData.currency === 'USD' ? '$' : 'Gdes';
     const subject = `Nouvel achat de ${formData.detailedTickets.reduce((sum, t) => sum + t.quantity, 0)} ticket(s) - ${formData.prenom} ${formData.nom}`;
     const body = `
 NOUVEL ACHAT DE TICKET(S) CETINFO 2025
@@ -136,12 +205,13 @@ NOUVEL ACHAT DE TICKET(S) CETINFO 2025
 TICKETS ACHETÉS (${formData.detailedTickets.reduce((sum, t) => sum + t.quantity, 0)} ticket(s)):
 • ${ticketsList}
 
-💰 MONTANT TOTAL: ${formData.total.toLocaleString()} Gdes
+💰 MONTANT TOTAL: ${formData.currency === 'USD' ? '$' + formData.total : formData.total.toLocaleString() + ' Gdes'}
 
 💳 INFORMATIONS DE TRANSACTION:
 • ID Transaction: ${formData.transactionId}
 • Date: ${formData.date}
 • Heure: ${formData.heure}
+• Devise: ${formData.currency}
 
 ---
 Cet email a été envoyé automatiquement depuis le formulaire d'achat CETINFO.
@@ -168,6 +238,10 @@ Cet email a été envoyé automatiquement depuis le formulaire d'achat CETINFO.
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('achatForm');
+    const currencyToggle = document.getElementById('currencyToggle');
+    
+    // Écouteur pour le toggle de devise
+    currencyToggle.addEventListener('change', toggleCurrency);
     
     // Initialiser les écouteurs d'événements pour les options de ticket
     const ticketOptions = document.querySelectorAll('.ticket-option');
@@ -234,6 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tickets: ticketsData.tickets,
             total: ticketsData.total,
             detailedTickets: ticketsData.detailedTickets,
+            currency: ticketsData.currency,
             date: maintenant.toLocaleDateString('fr-FR'),
             heure: maintenant.toLocaleTimeString('fr-FR')
         };
@@ -246,8 +321,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Confirmation d'achat
         const totalTickets = formData.detailedTickets.reduce((sum, t) => sum + t.quantity, 0);
+        const currencyText = formData.currency === 'USD' ? `$${formData.total}` : `${formData.total.toLocaleString()} Gdes`;
         const confirmation = confirm(
-            `Confirmez-vous l'achat de ${totalTickets} ticket(s) pour un total de ${formData.total.toLocaleString()} Gdes ?`
+            `Confirmez-vous l'achat de ${totalTickets} ticket(s) pour un total de ${currencyText} ?`
         );
         
         if (!confirmation) {
